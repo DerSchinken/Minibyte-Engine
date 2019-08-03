@@ -25,7 +25,12 @@ def inkey():
     termios.tcsetattr(fd,termios.TCSADRAIN, remember_attributes)
     return character
 
-os.system('clear')
+# For Windows
+if sys.platform == "win32":
+    os.system('cls')
+# For Linux
+else:
+    os.system('clear')
 
 class Engine():
     def start(lvl):
@@ -88,7 +93,12 @@ class Engine():
         while True:
             try:
                 time.sleep(delay)
-                os.system('clear') # This is why the script must be run in a console
+                # For Windows
+                if sys.platform == "win32":
+                    os.system('cls')
+                # For Linux
+                else:
+                    os.system('clear') # This is why the script must be run in a console
                 print('FPS: {}'.format(delay * 100))
                 Engine.move_player(lvl, Engine.get_player_pos(lvl))
                 print(Engine.display_lvl(lvl))
