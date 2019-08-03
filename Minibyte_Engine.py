@@ -25,6 +25,7 @@ def inkey():
     termios.tcsetattr(fd,termios.TCSADRAIN, remember_attributes)
     return character
 
+# This code is by Tornax08 thanks to him
 # For Windows
 if sys.platform == "win32":
     os.system('cls')
@@ -93,6 +94,8 @@ class Engine():
         while True:
             try:
                 time.sleep(delay)
+                
+                # This code is by Tornax08 thanks to him
                 # For Windows
                 if sys.platform == "win32":
                     os.system('cls')
@@ -121,7 +124,7 @@ if __name__ == '__main__':
      The P is an +
      The F is an :
      The X is an X
-     The space is an space
+     The space is an space (wow XD)
     """
     lvl = [
         'XXXXXXXXXXX',
