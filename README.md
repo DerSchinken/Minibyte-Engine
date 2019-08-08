@@ -1,3 +1,6 @@
 # Minibyte-Engine
+By Dr.Bumm
 
-Coming soon!
+
+# Release:
+# 12.08.2019
