@@ -10,11 +10,12 @@ mnlp ist die abkürzung für mainloop
 
 Das was wir als nächtes brauchen ist ein level auf dem man spielen kann
 Das erstellen wir so:
-lvl = [
+`lvl = [
        'XXXXXX',
        'XF  PX',
        'XXXXXX'
-       ]
+       ]`
+
 
 X = Wand 
 P = Spieler
@@ -27,7 +28,7 @@ müssen wie bei den anderen
 keine 3 elemente sondern 4 keine 5 elemente sondern 6 usw.
 
 um dann der engine den befehl zu geben starte das Spiel müssen wir nur
-noch mnlp.start(lvl) Eingeben und schon kannst du dein erstes lvl spielen
+noch `mnlp.start(lvl)` Eingeben und schon kannst du dein erstes lvl spielen
 Ein kleines bsp. ist die main.py
 Viel spaß
 
