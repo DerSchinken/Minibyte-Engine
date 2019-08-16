@@ -3,6 +3,7 @@
 By Dr.Bumm  
 Die main.exe ist das spiel nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
+Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540271c43cb4287c07a3cfbbfc7a97692bed9a75fe7e1fcca5bf/detection  
   
 Released:   
 -  
