@@ -28,8 +28,8 @@ P = Spieler
 F = Ziel  
 Und space ist space (wow xD)  
 was noch beachtet werden muss ist das:  
--die Zahl der elemente in einer reihe gleich viele wie sein   
-müssen wie bei den anderen  
+-die Zahl der elemente in einer reihe müssen gleich viele wie sein   
+wie bei den anderen  
 -Es muss eine gerade anzahl an elementen in einer reihe sein also  
 keine 3 elemente sondern 4 keine 5 elemente sondern 6 usw.  
   
