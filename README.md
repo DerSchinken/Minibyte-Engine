@@ -1,6 +1,8 @@
 ===============================================================================
 # Minibyte-Engine  
 By Dr.Bumm  
+Dieses Projekt hat mir 1 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir
+
 Die main.exe ist das spiel nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
 Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540271c43cb4287c07a3cfbbfc7a97692bed9a75fe7e1fcca5bf/detection  
@@ -58,4 +60,7 @@ Mit einer Datei und Icon:
 Geplante Updates
 -
 irgendwann 2019 - Gegner/Monster  
-irgendwann 2019 - Mehrere Spiele hinter einander  
+irgendwann 2019 - Mehrere Spiele hinter einander 
+Irgendwann 2020 - Rätsel
+Irgendwann 2020 - GUI (The Big Update)
+Irgendwann 2020 - Evtl einen Multi player 
