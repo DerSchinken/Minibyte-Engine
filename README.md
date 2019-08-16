@@ -1,8 +1,8 @@
 ===============================================================================
 # Minibyte-Engine  
-By Dr.Bumm
-Die main.exe ist das spiel nur in einer einzigen Datei 
-Kompiliert mit pyinstaller
+By Dr.Bumm  
+Die main.exe ist das spiel nur in einer einzigen Datei   
+Kompiliert mit pyinstaller  
   
 Released:   
 -  
