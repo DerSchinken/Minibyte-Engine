@@ -1,6 +1,8 @@
 ===============================================================================
 # Minibyte-Engine  
-By Dr.Bumm  
+By Dr.Bumm
+Die main.exe ist das spiel nur in einer einzigen Datei 
+Kompiliert mit pyinstaller
   
 Released:   
 -  
@@ -34,6 +36,16 @@ um dann der engine den befehl zu geben starte das Spiel müssen wir nur
 noch `mnlp.start(lvl)` Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
 Viel spaß  
+  
+Falls du dein eigenes Spiel auch zu einer Exe kompilieren willst:  
+Für ein eine Datei:  
+`pyinstaller -y -F  "Dateipfad zu der .py Datei"`  
+Für mehrere Dateien:  
+`pyinstaller -y  "Dateipfad zu der .py Datei"`  
+Mit Mehreren Dateien und Icon:  
+`pyinstaller -y -i "Dateipfad zu der .ico Datei" "Dateipfad zu der .py Datei"`  
+Mit einer Datei und Icon:   
+`pyinstaller -y -F -i "Dateipfad zu der .ico Datei"  "Dateipfad zu der .py Datei"`  
 
 Geplante Updates
 -
