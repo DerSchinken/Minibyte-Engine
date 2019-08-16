@@ -59,8 +59,8 @@ Mit einer Datei und Icon:
 
 Geplante Updates
 -
-irgendwann 2019 - Gegner/Monster  
-irgendwann 2019 - Mehrere Spiele hinter einander 
-Irgendwann 2020 - Rätsel
-Irgendwann 2020 - GUI (The Big Update)
-Irgendwann 2020 - Evtl einen Multi player 
+irgendwann 2019 - Gegner/Monster    
+irgendwann 2019 - Mehrere Spiele hinter einander   
+Irgendwann 2020 - Rätsel   
+Irgendwann 2020 - GUI (The Big Update)   
+Irgendwann 2020 - Evtl einen Multi player   
