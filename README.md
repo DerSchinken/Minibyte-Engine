@@ -15,11 +15,11 @@ mnlp ist die abkürzung für mainloop
   
 Das was wir als nächtes brauchen ist ein level auf dem man spielen kann  
 Das erstellen wir so:  
-`lvl = [  
-       'XXXXXX',  
-       'XF  PX',  
-       'XXXXXX'  
-       ]`  
+`lvl = [`     
+       `'XXXXXX',`      
+       `'XF  PX',`   
+       `'XXXXXX'`    
+       `]`    
   
   
 X = Wand   
