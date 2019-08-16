@@ -37,8 +37,15 @@ um dann der engine den befehl zu geben starte das Spiel müssen wir nur
 noch `mnlp.start(lvl)` Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
 Viel spaß  
-  
-Falls du dein eigenes Spiel auch zu einer Exe kompilieren willst:  
+   
+Falls du dein eigenes Spiel auch zu einer Exe kompilieren willst:    
+Mach sicher das du pyinstaller hast wenn nicht dann öffne die     
+Konsole indem du die Windows taste und r gleich zeitig drückst      
+in dem Fenster was erscheint `cmd` tippst und danach Enter drückst   
+Nun solltest du die CMD vor dir haben und dort führst du dann    
+`pip install pyinstaller` aus. Nun solltest du die folgenden befehle   
+ausführen können  
+   
 Für ein eine Datei:  
 `pyinstaller -y -F  "Dateipfad zu der .py Datei"`  
 Für mehrere Dateien:  
