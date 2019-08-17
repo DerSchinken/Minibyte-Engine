@@ -1,4 +1,5 @@
-# bsp. code how to use the game engine
+# Hier der bsp. code wie man  
+# Die engine verwendet
 
 from src import mnlp
 
