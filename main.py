@@ -9,5 +9,4 @@ lvl = ['XXXXXXXXXX',
        'XXXXXXXXXX']
 
 
-lvl = mnlp.init(lvl)
 mnlp.start(lvl)
