@@ -17,6 +17,7 @@ def init(lvl, lvl_new=[]):
 
 
 def display_lvl(lvl, lvl_print=''):
+    lvl = init(lvl)
     for i in range(len(lvl)):
         if lvl[i] == 1:
             lvl_print += 'X'
