@@ -17,6 +17,9 @@ class GUI:
 
         self.fenster = Tk()
 
+        # User kann nicht die Fenstergröße verändern
+        self.fenster.resizable(False, False)
+
         # Variable, um zu gucken, ob die Maus über einen Button ist
         self.mouseOverButton = False
 
@@ -125,9 +128,9 @@ class GUI:
 
         # Buttons
         self.firstButtonFrame.pack(anchor=CENTER, padx=5, pady=10, fill=X)
-        self.spielButton.grid(row=0, column=0, padx=5, pady=5)
-        self.verlassenButton.grid(row=0, column=1, padx=5, pady=5)
-        self.anleitungButton.grid(row=1, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
+        self.spielButton.grid(row=1, column=0, padx=5, pady=5)
+        self.verlassenButton.grid(row=1, column=1, padx=5, pady=5)
+        self.anleitungButton.grid(row=2, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
 
     def packForgetFirstPage(self):
         """
