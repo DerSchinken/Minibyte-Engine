@@ -1,21 +1,24 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # Dateiname: main.py
 # Autor: TornaxO7
-# Version: 1.1
+# Version: 1.2
 # Letzte Veränderung: 18.08.2019
 # Funktion:
 #    Erstellt die GUI welches das Startmenü des Spiels sein wird.
 # ---------------------------------------------------------------------------------------------------------------------
 
 from tkinter import *
-import os
 
 
 class GUI:
 
-    def __init__(self):
+    # Ansprechpartner der ganzen GUI
+    fenster = Tk()
 
-        self.fenster = Tk()
+    # Standard - Fenstergröße
+    window_height, window_width = 350, 400
+
+    def __init__(self):
 
         # User kann nicht die Fenstergröße verändern
         self.fenster.resizable(False, False)
@@ -26,27 +29,26 @@ class GUI:
         # Fenster wird platziert, sowie Hintergrund wird angepasst
         self.__windowConfig()
 
-        # erstes Fenster wird geladen
-        self.firstPage()
-        self.packFirstPage()
-
         # Die restlichen Fenster werden schonmal geladen
+        self.prepareMainPage()
         self.prepareInstruction()
+        self.prepareSelectOpponentPage()
 
+        # erstes Fenster wird geladen
+        self.packMainPage()
+
+    # ------ Allgemeine Fenster-Optionenen ------
     def __windowConfig(self):
         """
         Hier wird das Fenster in die Mitte des Fensters gepackt,
         sowie die Größe des Fensters festgelegt.
         """
 
-        # höhe und breite des Fensters
-        window_height, window_width = 350, 400
-
         # obere Ecke des Bildschirmes wird gemessen (x-achse)
-        x = (self.fenster.winfo_screenwidth() / 2) - (window_width / 2)
-        y = (self.fenster.winfo_screenheight() / 2) - (window_height / 2)
+        x = (self.fenster.winfo_screenwidth() / 2) - (self.window_width / 2)
+        y = (self.fenster.winfo_screenheight() / 2) - (self.window_height / 2)
 
-        self.fenster.geometry("%dx%d+%d+%d" % (window_width, window_height, x, y))
+        self.fenster.geometry("%dx%d+%d+%d" % (self.window_width, self.window_height, x, y))
 
         # Hintergrundfarbe
         self.fenster.config(bg="#444")
@@ -54,7 +56,13 @@ class GUI:
         # Überschrift
         self.fenster.title("Minibyte-Engine")
 
-    def firstPage(self):
+    def resetWindowSize(self):
+        """
+        Hier wird das Fenster zurück auf ihre Standard Fenstergröße zurückgebracht.
+        """
+        self.fenster.geometry("%dx%d" % (self.window_width, self.window_height))
+
+    def prepareMainPage(self):
         """
         Hier wird die erste Seite erstellt.
         Inhalt:
@@ -102,7 +110,7 @@ class GUI:
 
         self.spielButton = Button(self.firstButtonFrame,
                                   text="Spielen",
-                                  command=None,
+                                  command=self.selectOpponentPage,
                                   width=19,
                                   height=2,
                                   bg="#888")
@@ -121,7 +129,7 @@ class GUI:
                                 height=2,
                                 bg="#888")
 
-    def packFirstPage(self):
+    def packMainPage(self):
         """
         Hier werden alle Widgets entpackt,
         die auf der ersten Seite sein sollen.
@@ -135,7 +143,7 @@ class GUI:
         self.verlassenButton.grid(row=1, column=1, padx=5, pady=5)
         self.anleitungButton.grid(row=2, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
 
-    def packForgetFirstPage(self):
+    def packForgetMainPage(self):
         """
         Hier werden alle Widgets von der ersten Seite weggemacht,
         bzw. unsichtbar gemacht.
@@ -151,7 +159,7 @@ class GUI:
         """
         Wird verwendet, wenn der Spieler auf "Spielen" gedrückt hat.
         """
-        self.packForgetFirstPage()
+        self.packForgetMainPage()
 
         # Spielerauswahl == 2. Fenster
         self.selectOpponent()
@@ -166,7 +174,7 @@ class GUI:
         """
         Zeigt die Anleitung an, wenn der User auf "Anleitung" drücktt.
         """
-        self.packForgetFirstPage()
+        self.packForgetMainPage()
         self.packInstruction()
 
     def packInstruction(self):
@@ -213,26 +221,83 @@ class GUI:
         User wird zurück zum Hauptmenü gebracht. (von der Anleitungseite aus)
         """
         self.packForgetInstruction()
-        self.packFirstPage()
+        self.packMainPage()
 
     # --------------------------- Gegnerauswahl ---------------------------
 
-    def selectOpponent(self):
+    def selectOpponentPage(self):
         """
         Hier kann der Spieler entscheiden, ob er gegen den Computer spielen möchte
         oder gegen einen anderen Spieler.
         """
-        self.packForgetFirstPage()
+        self.packForgetMainPage()
+        self.packOpponentPage()
 
     def prepareSelectOpponentPage(self):
         """
         Hier werden die Widgets vorbereitet, sodass sie nur noch aufgerufen werden müssen.
+        Wichtige Variablen:
+        - opponentText (Überschrift)        type: Label
+        - singlePlayer                      type: Button
+        - twoPlayers                        type: Button
+        - backFromSelectOpponentButton      type: Button
         """
         self.opponentText = Label(self.fenster,
                                   text="Wie viele Spieler?",
                                   bg="#444",
-                                  fg="55CC05",
-                                  font=(""))
+                                  fg="#55CC05",
+                                  font=("Arial", 20, "italic"))
+
+        self.opponentSelectButtonFrame = Frame(self.fenster,
+                                               relief=RIDGE,
+                                               bd=3,
+                                               bg="#444")
+
+        self.singlePlayer = Button(self.opponentSelectButtonFrame,
+                                   text="1 Spieler",
+                                   bg="#888",
+                                   width=14,
+                                   command=None)
+
+        self.twoPlayers = Button(self.opponentSelectButtonFrame,
+                                 text="2 Spieler",
+                                 bg="#888",
+                                 width=14,
+                                 command=None)
+
+        self.backFromSelectOpponentButton = Button(self.opponentSelectButtonFrame,
+                                                   text="Zurück",
+                                                   bg="#888",
+                                                   width=10,
+                                                   command=self.backFromOpponentPage)
+
+    def backFromOpponentPage(self):
+        """
+        Bringt den User zurück zum Hauptmenü, von der Gegner-Auswahl-Seite.
+        """
+        self.packForgetOpponenPage()
+        self.resetWindowSize()
+        self.packMainPage()
+
+    def packOpponentPage(self):
+        """
+        Hier werden die Widgets sichtbar gemacht, die zum Fenster für die
+        Gegnerauswahl bestimmt sind.
+        """
+        self.fenster.geometry("%dx%d" % (320, 145))
+        self.opponentText.pack(anchor=N, pady=5, padx=5, fill=X)
+        self.opponentSelectButtonFrame.pack(anchor=CENTER, pady=5, padx=5, ipadx=0, fill=X)
+        self.singlePlayer.grid(row=1, column=0, padx=5, pady=5)
+        self.twoPlayers.grid(row=1, column=1, padx=5, pady=5)
+        self.backFromSelectOpponentButton.grid(row=2, columnspan=2, pady=5)
+
+    def packForgetOpponenPage(self):
+        """
+        Die Widgets vom Fenster für die Gegnerauswahl werden unsichtbar gemacht.
+        """
+        self.opponentText.pack_forget()
+        self.opponentSelectButtonFrame.pack_forget()
+
 
 if __name__ == '__main__':
     start = GUI()
