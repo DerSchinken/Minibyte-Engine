@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # Dateiname: main.py
 # Autor: TornaxO7
-# Version: 1.0
+# Version: 1.4
 # Letzte Veränderung: 18.08.2019
 # Funktion:
 #    Erstellt die GUI welches das Startmenü des Spiels sein wird.
