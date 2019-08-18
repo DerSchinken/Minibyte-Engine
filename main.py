@@ -7,6 +7,4 @@ lvl = ['XXXXXXXXXX',
        'XF     XXX',
        'XXXXXXXXXX']
 
-
-lvl = mnlp.init(lvl)
 mnlp.start(lvl)
