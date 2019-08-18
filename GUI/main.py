@@ -8,6 +8,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 from tkinter import *
+import os
 
 
 class GUI:
@@ -153,7 +154,7 @@ class GUI:
         """
         User möchte das Fenster schließen. ("Verlasen"-Button wird betätigt)
         """
-        self.fenster.quit()
+        self.fenster.destroy()
 
     def startInstruction(self):
         """
@@ -208,6 +209,8 @@ class GUI:
         self.packForgetInstruction()
         self.packFirstPage()
 
+    # --------------------------- Gegnerauswahl ---------------------------
+
     def selectOpponent(self):
         """
         Hier kann der Spieler entscheiden, ob er gegen den Computer spielen möchte
@@ -215,6 +218,15 @@ class GUI:
         """
         self.packForgetFirstPage()
 
+    def prepareSelectOpponentPage(self):
+        """
+        Hier werden die Widgets vorbereitet, sodass sie nur noch aufgerufen werden müssen.
+        """
+        self.opponentText = Label(self.fenster,
+                                  text="Wie viele Spieler?",
+                                  bg="#444",
+                                  fg="55CC05",
+                                  font=(""))
 
 if __name__ == '__main__':
     start = GUI()
