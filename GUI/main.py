@@ -51,6 +51,9 @@ class GUI:
         # Hintergrundfarbe
         self.fenster.config(bg="#444")
 
+        # Überschrift
+        self.fenster.title("Minibyte-Engine")
+
     def firstPage(self):
         """
         Hier wird die erste Seite erstellt.
