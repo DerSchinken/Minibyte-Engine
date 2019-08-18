@@ -130,7 +130,7 @@ class GUI:
         self.textInhalt.pack(anchor=CENTER, padx=5, pady=10)
 
         # Buttons
-        self.firstButtonFrame.pack(anchor=CENTER, padx=5, pady=10, fill=X)
+        self.firstButtonFrame.pack(anchor=CENTER, padx=5, pady=10, ipadx=0)
         self.spielButton.grid(row=1, column=0, padx=5, pady=5)
         self.verlassenButton.grid(row=1, column=1, padx=5, pady=5)
         self.anleitungButton.grid(row=2, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
