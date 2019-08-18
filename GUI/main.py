@@ -8,7 +8,6 @@
 # ---------------------------------------------------------------------------------------------------------------------
 
 from tkinter import *
-from tkinter import font
 
 
 class GUI:
@@ -110,7 +109,7 @@ class GUI:
 
         self.verlassenButton = Button(self.firstButtonFrame,
                                 text="Verlassen",
-                                command=self.quit,
+                                command=self.close,
                                 width=19,
                                 height=2,
                                 bg="#888")
@@ -124,7 +123,7 @@ class GUI:
         self.textInhalt.pack(anchor=CENTER, padx=5, pady=10)
 
         # Buttons
-        self.firstButtonFrame.pack(side=BOTTOM, padx=5, pady=10, fill=X)
+        self.firstButtonFrame.pack(anchor=CENTER, padx=5, pady=10, fill=X)
         self.spielButton.grid(row=0, column=0, padx=5, pady=5)
         self.verlassenButton.grid(row=0, column=1, padx=5, pady=5)
         self.anleitungButton.grid(row=1, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
@@ -150,7 +149,7 @@ class GUI:
         # Spielerauswahl == 2. Fenster
         self.selectOpponent()
 
-    def quit(self):
+    def close(self):
         """
         User möchte das Fenster schließen. ("Verlasen"-Button wird betätigt)
         """
