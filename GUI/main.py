@@ -286,7 +286,7 @@ class GUI:
         """
         self.fenster.geometry("%dx%d" % (320, 145))
         self.opponentText.pack(anchor=N, pady=5, padx=5, fill=X)
-        self.opponentSelectButtonFrame.pack(anchor=CENTER, pady=5, padx=5, ipadx=0, fill=X)
+        self.opponentSelectButtonFrame.pack(anchor=CENTER, pady=5, padx=5, ipadx=0)
         self.singlePlayer.grid(row=1, column=0, padx=5, pady=5)
         self.twoPlayers.grid(row=1, column=1, padx=5, pady=5)
         self.backFromSelectOpponentButton.grid(row=2, columnspan=2, pady=5)
