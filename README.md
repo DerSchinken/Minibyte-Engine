@@ -9,7 +9,8 @@ Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540
   
 Released:   
 -  
-16.08.2019    
+Für Windows: 16.08.2019   
+Für Linux: Wird gerade Entwickelt
   
 Bedienung  
 -  
