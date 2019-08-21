@@ -4,8 +4,7 @@
 # Version: 1.0
 # Letzte Veränderung: 21.08.2019
 # Funktion:
-#    Speichert irgendeine Datei mit der Endung ".MNBE"... keine Ahnung was das machen soll.
-#    Fragt Dr. Bumm net micht.
+#    Speichert selbst geschriebene Rätsel Module (Ich nenne es Module könnt ihr aber auch Blöcke oder ähnlich nennen)
 # ---------------------------------------------------------------------------------------------------------------------
 from tkinter import *
 from tkinter import filedialog
