@@ -11,7 +11,7 @@ Released:
 -  
 Für Windows: 16.08.2019   
 Für Linux: Wird gerade Entwickelt   
-Für Mac: Kann ich nicht testen   
+Für Mac: Nicht getestet   
   
 Bedienung  
 -  
