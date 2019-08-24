@@ -36,6 +36,7 @@ def gtopp():
 
 
 def start(lvl, delay=0.2):
+    lvl = init(lvl)
     while True:
         try:
             # This code is by Tornax07 thanks to him
@@ -52,3 +53,4 @@ def start(lvl, delay=0.2):
             print('Exiting ')
             time.sleep(3)
             break
+
