@@ -10,22 +10,26 @@ Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540
 Released:   
 -  
 Für Windows: 16.08.2019   
-Für Linux: Wird gerade Entwickelt   
+Für Linux: 24.08.2019   
 Für Mac: Nicht getestet   
   
 Bedienung  
 -  
-Für das benutzen muss m,an erst mal mnlp importieren mit `from src import mnlp`  
+Für das benutzen muss m,an erst mal mnlp importieren mit 
+```python
+from src import mnlp
+```  
 mnlp ist die abkürzung für mainloop  
   
 Das was wir als nächtes brauchen ist ein level auf dem man spielen kann  
 Das erstellen wir so:  
-`lvl = [`     
-       `'XXXXXX',`      
-       `'XF  PX',`   
-       `'XXXXXX'`    
-       `]`    
-  
+```python
+lvl = [     
+      'XXXXXX',      
+      'XF  PX',   
+      'XXXXXX'    
+      ]    
+```
   
 X = Wand   
 P = Spieler  
@@ -38,7 +42,11 @@ wie bei den anderen
 keine 3 elemente sondern 4 keine 5 elemente sondern 6 usw.  
   
 um dann der engine den befehl zu geben starte das Spiel müssen wir nur  
-noch `mnlp.start(lvl)` Eingeben und schon kannst du dein erstes lvl spielen  
+noch 
+```python 
+mnlp.start(lvl)
+```
+Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
 Viel spaß  
    
@@ -47,7 +55,10 @@ Mach sicher das du pyinstaller hast wenn nicht dann öffne die
 Konsole indem du die Windows taste und r gleich zeitig drückst      
 in dem Fenster was erscheint `cmd` tippst und danach Enter drückst   
 Nun solltest du die CMD vor dir haben und dort führst du dann    
-`pip install pyinstaller` aus. Nun solltest du die folgenden befehle   
+```python
+pip install pyinstaller
+``` 
+aus. Nun solltest du die folgenden befehle   
 ausführen können  
    
 Für ein eine Datei:  
