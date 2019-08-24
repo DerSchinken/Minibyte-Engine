@@ -3,12 +3,12 @@
 
 def init(lvl, lvl_new=[], ch=0):
     for i in range(len(lvl)):
-        #try:
-         #   if lvl_new[len(lvl_new)-1] == 3:
-          #      print("Stell bitte sicher das dein Level überall an der seite\nränder (X) hat damit der Spieler nicht out off bounce gelangt\nund dort schaden(Glitches/Bugs) veruscachen kann!")
-           #     exit()
-        #except IndexError:
-         #   print('')
+        try:
+            if lvl_new[len(lvl_new)-1] == 3:
+                print("Stell bitte sicher das dein Level überall an der seite\nränder (X) hat damit der Spieler nicht out off bounce gelangt\nund dort schaden(Glitches/Bugs) veruscachen kann!")
+                exit()
+        except IndexError:
+            print('')
         lvl_new.append(4)
         for o in lvl[i]:
             if o == 'X':
