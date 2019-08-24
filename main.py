@@ -1,5 +1,4 @@
-# bsp. code how to use the game engine
-
+# bsp. code Wie man die Engine benutzt
 from src import mnlp
 
 lvl = ['XXXXXXXXXX',
