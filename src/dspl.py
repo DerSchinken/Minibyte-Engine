@@ -1,7 +1,11 @@
 # Display level
 
 
-def init(lvl, lvl_new=[], ch=0):
+def init(lvl, lvl_new=[]):
+    if ' ' in lvl[0] or ' ' in lvl[len(lvl)-1]:
+        print("Stell bitte sicher das dein Level überall an der seite\nränder (X) hat damit der Spieler nicht out off bounce gelangt\nund dort schaden(Glitches/Bugs) veruscachen kann!")
+        exit()
+        
     for i in range(len(lvl)):
         try:
             if lvl_new[len(lvl_new)-1] == 3:
@@ -9,6 +13,7 @@ def init(lvl, lvl_new=[], ch=0):
                 exit()
         except IndexError:
             print('')
+            
         lvl_new.append(4)
         for o in lvl[i]:
             if o == 'X':
@@ -36,4 +41,3 @@ def display_lvl(lvl, lvl_print=''):
             lvl_print += '\n'
 
     print(lvl_print)
-
