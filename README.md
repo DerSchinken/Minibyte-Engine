@@ -3,7 +3,7 @@
 By Dr.Bumm  
 Dieses Projekt hat mir 1 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir
 
-Die main.exe ist das spiel nur in einer einzigen Datei   
+Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
 Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540271c43cb4287c07a3cfbbfc7a97692bed9a75fe7e1fcca5bf/detection  
   
