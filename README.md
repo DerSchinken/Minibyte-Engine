@@ -2,7 +2,7 @@
 # Minibyte-Engine  
 By Dr.Bumm  
 Dieses Projekt hat mir 1 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
-_Die GUI ist in Entwicklung **!**_
+___Die GUI ist in Entwicklung **!**___
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
