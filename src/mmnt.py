@@ -51,6 +51,8 @@ def mv(lvl, done=False):
                 print('Exiting')
                 time.sleep(3)
                 exit()
+                
+        if key != '':
             if key == 'a':
                 done = True
                 return ca.move(gtps.get_player_pos(lvl), 'l', lvl)
@@ -63,4 +65,7 @@ def mv(lvl, done=False):
             if key == 's':
                 done = True
                 return ca.move(gtps.get_player_pos(lvl), 'd', lvl)
-
+            if key == '':
+                print('Exiting')
+                time.sleep(3)
+                exit()
