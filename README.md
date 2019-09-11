@@ -17,7 +17,7 @@ Für Mac: Nicht getestet
   
 Bedienung  
 -  
-Für das benutzen muss m,an erst mal mnlp importieren mit 
+Für das benutzen muss man erst mal mnlp importieren mit 
 ```python
 from src import mnlp
 ```  
