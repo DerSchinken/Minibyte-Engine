@@ -14,6 +14,8 @@ Released:
 Für Windows: 16.08.2019   
 Für Linux: 24.08.2019   
 Für Mac: Nicht getestet   
+Für das Handy sollte es mit Android 5 und QPython3  
+funktionieren. 
   
 Bedienung  
 -  
