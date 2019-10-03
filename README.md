@@ -76,5 +76,5 @@ Mit einer Datei und Icon:
 
 Geplante Updates
 -
-20.09.2019 - Ki die das Level spielt                   
-irgendwann 2019 - Gegner/Monster und GUI mit Multiplayer und Mehreren spielen insklusive rätsel (The very Big update)    
+Irgendwann 2019 - Ki die das Level spielt                   
+Auch irgendwann 2019 nur später als die KI - Gegner/Monster und GUI mit Multiplayer und Mehreren spielen insklusive rätsel (The very Big update)    
