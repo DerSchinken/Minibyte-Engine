@@ -46,7 +46,7 @@ def start(lvl, delay=0.2):
             # For Linux
             else:
                 os.system('clear')
-            dspl.display_lvl(lvl)
+            dspl.display_lvl(lvl.uper())
             lvl = mmnt.mv(lvl)
             time.sleep(delay)
         except KeyboardInterrupt:
