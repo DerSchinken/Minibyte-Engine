@@ -2,8 +2,8 @@
 # Minibyte-Engine  
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
-Dieses Projekt hat mir 1 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
-___Die GUI ist in Entwicklung **!**___
+Dieses Projekt hat mir 2 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
+___Die GUI ist in Entwicklung **!**___ **Wurde aufs eisgelegt fürs erste**
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
@@ -15,7 +15,7 @@ Für Windows: 16.08.2019
 Für Linux: 24.08.2019   
 Für Mac: Nicht getestet   
 Für das Handy sollte es mit Android 5 und QPython3  
-funktionieren. 
+funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen
   
 Bedienung  
 -  
@@ -30,13 +30,15 @@ Das erstellen wir so:
 ```python
 lvl = [     
       'XXXXXX',      
-      'XF  PX',   
+      'X   PX',     
+      'XF  MX',     
       'XXXXXX'    
       ]    
 ```
   
 X = Wand   
 P = Spieler  
+M = Monster      
 F = Ziel  
 Und space ist space (wow xD)  
 was noch beachtet werden muss ist das:  
@@ -48,7 +50,10 @@ keine 3 elemente sondern 4 keine 5 elemente sondern 6 usw.
 um dann der engine den befehl zu geben starte das Spiel müssen wir nur  
 noch 
 ```python 
-mnlp.start(lvl)
+mnlp.start(lvl) # Um bestimmte anzahl an leben hinzuzufügen einfach nach lvl die leben schreiben
+# bsp:
+#mnlp.start(lvl, 3) 
+# Der default wert is 6
 ```
 Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
@@ -62,6 +67,10 @@ Nun solltest du die CMD vor dir haben und dort führst du dann
 ```python
 pip install pyinstaller
 ``` 
+oder
+```python
+pip3 install pyinstaller
+```
 aus. Nun solltest du die folgenden befehle   
 ausführen können  
    
@@ -77,4 +86,4 @@ Mit einer Datei und Icon:
 Geplante Updates
 -
 Irgendwann 2019 - Ki die das Level spielt                   
-Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update)    
+Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update) ***Wurde aufs eisgelegt fürs erste***    
