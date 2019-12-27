@@ -31,21 +31,22 @@ Das erstellen wir so:
 lvl = [     
       'XXXXXX',      
       'X   PX',     
-      'XF  MX',     
+      'XF  GX',     
       'XXXXXX'    
       ]    
 ```
   
-X = Wand   
-P = Spieler  
-M = Monster      
-F = Ziel  
+X = Wand (wird als X dargestellt)  
+P = Spieler (wird als + dargestellt)   
+G = Monster/Gegner (wird als M dargestellt)     
+F = Ziel (wird als : dargestellt) 
 Und space ist space (wow xD)  
 was noch beachtet werden muss ist das:  
 -die Zahl der elemente in einer reihe müssen gleich viele wie sein   
 wie bei den anderen  
 -Es muss eine gerade anzahl an elementen in einer reihe sein also  
 keine 3 elemente sondern 4 keine 5 elemente sondern 6 usw.  
+Das wird allerdings bald gefixt!
   
 um dann der engine den befehl zu geben starte das Spiel müssen wir nur  
 noch 
