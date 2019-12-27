@@ -35,7 +35,7 @@ def gtopp():
     return len(lvl_gtopp[0])
 
 
-def start(lvl, delay=0.2):
+def start(lvl, lives=6, delay=0.2):
     lvl = init(lvl)
     while True:
         try:
@@ -46,11 +46,13 @@ def start(lvl, delay=0.2):
             # For Linux
             else:
                 os.system('clear')
-            dspl.display_lvl(lvl.uper())
-            lvl = mmnt.mv(lvl)
+            if lives == 0:
+                print("Game Over")
+                exit()
+            dspl.display_lvl(lvl, lives)
+            lvl, lives = mmnt.mv(lvl, lives)
             time.sleep(delay)
         except KeyboardInterrupt:
             print('Exiting ')
             time.sleep(3)
             break
-

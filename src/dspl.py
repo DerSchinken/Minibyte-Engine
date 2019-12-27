@@ -24,10 +24,16 @@ def init(lvl, lvl_new=[]):
                 lvl_new.append(0)
             if o == ' ':
                 lvl_new.append(3)
+            if o == 'G':
+                lvl_new.append(5)
     return lvl_new
 
 
-def display_lvl(lvl, lvl_print=''):
+def display_lvl(lvl, lives, lvl_print=''):
+    lvl_print += "Lives: "
+    for o in range(lives):
+        lvl_print += '░ '
+    lvl_print += "\n"
     for i in range(len(lvl)):
         if lvl[i] == 1:
             lvl_print += 'X'
@@ -37,6 +43,8 @@ def display_lvl(lvl, lvl_print=''):
             lvl_print += ' '
         if lvl[i] == 0:
             lvl_print += ':'
+        if lvl[i] == 5:
+            lvl_print += 'M'
         if lvl[i] == 4:
             lvl_print += '\n'
 

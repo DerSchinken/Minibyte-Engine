@@ -29,7 +29,7 @@ def _find_getch():
     return _getch
 
 
-def mv(lvl, done=False):
+def mv(lvl, lives,  done=False):
     getch = _find_getch()
     while not done:
         key = getch()
@@ -37,16 +37,16 @@ def mv(lvl, done=False):
         if key != '':
             if key == b'a':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'l', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives)
             if key == b'd':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'r', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives)
             if key == b'w':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'u', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives)
             if key == b's':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'd', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives)
             if key == b'\x03':
                 print('Exiting')
                 time.sleep(3)
@@ -55,16 +55,16 @@ def mv(lvl, done=False):
         if key != '':
             if key == 'a':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'l', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives)
             if key == 'd':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'r', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives)
             if key == 'w':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'u', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives)
             if key == 's':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'd', lvl)
+                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives)
             if key == '':
                 print('Exiting')
                 time.sleep(3)
