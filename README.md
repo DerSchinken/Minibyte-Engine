@@ -3,7 +3,7 @@
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
 Dieses Projekt hat mir 2 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
-___Die GUI ist in Entwicklung **!**___ **Wurde aufs eisgelegt fürs erste**
+~~___Die GUI ist in Entwicklung **!**___~~ **Wurde aufs eisgelegt fürs erste**
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
@@ -88,4 +88,4 @@ Mit einer Datei und Icon:
 Geplante Updates
 -
 Irgendwann 2019 - Ki die das Level spielt                   
-Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update) ***Wurde aufs eisgelegt fürs erste***    
+~~Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update) ***Wurde aufs eisgelegt fürs erste***~~    
