@@ -7,7 +7,10 @@ Dieses Projekt hat mir 2 Woche meiner Lebens zeit geraubt ich hoffe dieses Proje
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
-Virus Scann zu der main.exe: https://www.virustotal.com/gui/file/ae8c30479109540271c43cb4287c07a3cfbbfc7a97692bed9a75fe7e1fcca5bf/detection  
+Virus Scann zu der main.exe: 
+https://www.virustotal.com/gui/file/f6341134069b2336e09160237e7b3e2fa0b1f84fda5df540fa13bcb32385214b/detection
+Virus scann zu der Compiler.exe:
+https://www.virustotal.com/gui/file/b710e8631bb5d252c535fa17b39c239284e3ceee8e83c0c9f5c1cd447614f0f5/details
   
 Released:   
 -  
