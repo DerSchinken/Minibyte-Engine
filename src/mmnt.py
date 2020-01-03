@@ -29,7 +29,7 @@ def _find_getch():
     return _getch
 
 
-def mv(lvl, lives, mlives, done=False):
+def mv(lvl, lives, mlives,  done=False):
     getch = _find_getch()
     while not done:
         key = getch()
