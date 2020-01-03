@@ -6,4 +6,4 @@ lvl = ['XXXXXXXXXX',
        'XF     XXX',
        'XXXXXXXXXX']
 
-mnlp.start(lvl)
+mnlp.start(lvl, True)

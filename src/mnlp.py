@@ -3,7 +3,7 @@
 import time
 import os
 import sys
-from src import dspl, mmnt
+from src import dspl, mmnt, mbki
 
 
 lvl_gtopp = []
@@ -35,24 +35,31 @@ def gtopp():
     return len(lvl_gtopp[0])
 
 
-def start(lvl, lives=6, delay=0.2):
-    lvl = init(lvl)
-    while True:
+def start(lvl, ki=False, lives=6, delay=0.2):
+    if not ki:
+        lvl = init(lvl)
+        while True:
+            try:
+                # This code is by Tornax07 thanks to him
+                # For Windows
+                if sys.platform == "win32":
+                    os.system('cls')
+                # For Linux
+                else:
+                    os.system('clear')
+                if lives == 0:
+                    print("Game Over")
+                    exit()
+                dspl.display_lvl(lvl, lives)
+                lvl, lives = mmnt.mv(lvl, lives)
+                time.sleep(delay)
+            except KeyboardInterrupt:
+                print('Exiting ')
+                time.sleep(3)
+                break
+    else:
         try:
-            # This code is by Tornax07 thanks to him
-            # For Windows
-            if sys.platform == "win32":
-                os.system('cls')
-            # For Linux
-            else:
-                os.system('clear')
-            if lives == 0:
-                print("Game Over")
-                exit()
-            dspl.display_lvl(lvl, lives)
-            lvl, lives = mmnt.mv(lvl, lives)
-            time.sleep(delay)
+            mbki.MBKI(lvl, lives)
         except KeyboardInterrupt:
-            print('Exiting ')
-            time.sleep(3)
-            break
+            print("Exiting ...")
+            exit()
