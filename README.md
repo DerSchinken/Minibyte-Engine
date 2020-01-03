@@ -39,7 +39,8 @@ lvl = [
   
 X = Wand (wird als X dargestellt)  
 P = Spieler (wird als + dargestellt)   
-G = Monster/Gegner (wird als M dargestellt)     
+G = Monster/Gegner (wird als M dargestellt)      
+Das Monster hat 4 leben und ist nicht veränderbar!    
 F = Ziel (wird als : dargestellt) 
 Und space ist space (wow xD)  
 was noch beachtet werden muss ist das:  
@@ -56,6 +57,9 @@ mnlp.start(lvl) # Um bestimmte anzahl an leben hinzuzufügen einfach nach lvl di
 # bsp:
 #mnlp.start(lvl, 3) 
 # Der default wert is 6
+# wenn ihr die Ki euer lvl spielen lassen wollt dann macht einfach:
+#mnlp.start(lvl, 6, True)
+# Die ki ist standart mässig deaktiviert!
 ```
 Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
@@ -86,6 +90,5 @@ Mit einer Datei und Icon:
 `pyinstaller -y -F -i "Dateipfad zu der .ico Datei"  "Dateipfad zu der .py Datei"`  
 
 Geplante Updates
--
-Irgendwann 2019 - Ki die das Level spielt                   
+-                 
 ~~Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update) ***Wurde aufs eisgelegt fürs erste***~~    
