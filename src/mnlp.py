@@ -36,6 +36,7 @@ def gtopp():
 
 
 def start(lvl, ki=False, lives=6, delay=0.2):
+    mlives = 4
     if not ki:
         lvl = init(lvl)
         while True:
@@ -51,7 +52,7 @@ def start(lvl, ki=False, lives=6, delay=0.2):
                     print("Game Over")
                     exit()
                 dspl.display_lvl(lvl, lives)
-                lvl, lives = mmnt.mv(lvl, lives)
+                lvl, lives, mlives = mmnt.mv(lvl, lives, mlives)
                 time.sleep(delay)
             except KeyboardInterrupt:
                 print('Exiting ')
