@@ -24,7 +24,9 @@ Last update: 27.12.2019 02:18
   
 Bedienung  
 -  
-Für das benutzen muss man erst mal mnlp importieren mit 
+Für die verwendung braucht ihr Python wenn ihr das nicht habt könnt ihr es euch hier holen: https://www.python.org/    
+     
+Für das benutzen der Engine muss man erst mal mnlp importieren mit 
 ```python
 from src import mnlp
 ```  
