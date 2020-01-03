@@ -58,7 +58,7 @@ mnlp.start(lvl) # Um bestimmte anzahl an leben hinzuzufügen einfach nach lvl di
 #mnlp.start(lvl, 3) 
 # Der default wert is 6
 # wenn ihr die Ki euer lvl spielen lassen wollt dann macht einfach:
-#mnlp.start(lvl, 6, True)
+#mnlp.start(lvl, True)
 # Die ki ist standart mässig deaktiviert!
 ```
 Eingeben und schon kannst du dein erstes lvl spielen  
