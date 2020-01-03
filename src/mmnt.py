@@ -29,7 +29,7 @@ def _find_getch():
     return _getch
 
 
-def mv(lvl, lives,  done=False):
+def mv(lvl, lives, mlives, done=False):
     getch = _find_getch()
     while not done:
         key = getch()
@@ -37,16 +37,16 @@ def mv(lvl, lives,  done=False):
         if key != '':
             if key == b'a':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives, mlives)
             if key == b'd':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives, mlives)
             if key == b'w':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives, mlives)
             if key == b's':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives, mlives)
             if key == b'\x03':
                 print('Exiting')
                 time.sleep(3)
@@ -55,16 +55,16 @@ def mv(lvl, lives,  done=False):
         if key != '':
             if key == 'a':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'l', lvl, lives, mlives)
             if key == 'd':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'r', lvl, lives, mlives)
             if key == 'w':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'u', lvl, lives, mlives)
             if key == 's':
                 done = True
-                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives)
+                return ca.move(gtps.get_player_pos(lvl), 'd', lvl, lives, mlives)
             if key == '':
                 print('Exiting')
                 time.sleep(3)
