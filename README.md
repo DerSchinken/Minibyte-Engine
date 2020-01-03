@@ -10,7 +10,8 @@ Kompiliert mit pyinstaller
 Virus Scann zu der main.exe: 
 https://www.virustotal.com/gui/file/f6341134069b2336e09160237e7b3e2fa0b1f84fda5df540fa13bcb32385214b/detection
 Virus scann zu der Compiler.exe:
-https://www.virustotal.com/gui/file/b710e8631bb5d252c535fa17b39c239284e3ceee8e83c0c9f5c1cd447614f0f5/details
+https://www.virustotal.com/gui/file/b710e8631bb5d252c535fa17b39c239284e3ceee8e83c0c9f5c1cd447614f0f5/details    
+Der uncompilierte Compiler ist unter ´src´ zu finden
   
 Released:   
 -  
