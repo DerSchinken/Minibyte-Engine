@@ -2,16 +2,18 @@
 # Minibyte-Engine  
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
-Dieses Projekt hat mir 2 Woche meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
+Dieses Projekt hat mir 1 Monat und 2 Wochen meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
 ___Die GUI ist in Entwicklung **!**___
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
 Kompiliert mit pyinstaller  
-Virus Scann zu der main.exe: 
+Virus Scann zu der `main.exe`:    
 https://www.virustotal.com/gui/file/f6341134069b2336e09160237e7b3e2fa0b1f84fda5df540fa13bcb32385214b/detection
-Virus scann zu der Compiler.exe:
+Virus scann zu der `Compiler.exe`:    
 https://www.virustotal.com/gui/file/b710e8631bb5d252c535fa17b39c239284e3ceee8e83c0c9f5c1cd447614f0f5/details    
-Der uncompilierte Compiler ist unter ´src´ zu finden
+Vires scann zu der `Engine.exe`:    
+https://www.virustotal.com/gui/file/ddc85753643fe665578298a1662c05a01cd36445fc58b2092812ea189202e0d1/detection     
+Der uncompilierte Compiler ist unter ´src´ zu finden    
   
 Released:   
 -  
@@ -19,11 +21,12 @@ Für Windows: 16.08.2019
 Für Linux: 24.08.2019   
 Für Mac: Nicht getestet   
 Für das Handy sollte es mit Android 5 und QPython3  
-funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen
+funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen und euer Display ist groß    
 Last update: 27.12.2019 02:18
   
 Bedienung  
 -  
+### Cmd
 Für die verwendung braucht ihr Python wenn ihr das nicht habt könnt ihr es euch hier holen: https://www.python.org/    
      
 Für das benutzen der Engine muss man erst mal mnlp importieren mit 
@@ -71,7 +74,10 @@ Eingeben und schon kannst du dein erstes lvl spielen
 Ein kleines bsp. ist die main.py  
 Viel spaß  
    
-Falls du dein eigenes Spiel auch zu einer Exe kompilieren willst:    
+### GUI
+Einfach die `Engine.py` oder `Engine.exe` starten
+### "Compile"
+Falls du dein eigenes Spiel auch zu einer Exe "kompilieren" willst:    
 Mach sicher das du pyinstaller hast wenn nicht dann öffne die     
 Konsole indem du die Windows taste und r gleich zeitig drückst      
 in dem Fenster was erscheint `cmd` tippst und danach Enter drückst   
