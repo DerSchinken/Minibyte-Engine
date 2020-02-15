@@ -3,7 +3,7 @@
 import time
 import os
 import sys
-from src import dspl, mmnt, mbki
+from src import dspl, mmnt, mbki, new_mbki
 
 
 lvl_gtopp = []
@@ -35,6 +35,36 @@ def gtopp():
     return len(lvl_gtopp[0])
 
 
+def getmaze(lvl, lvl_new=[]):
+    if ' ' in lvl[0] or ' ' in lvl[len(lvl) - 1]:
+        print(
+            "Stell bitte sicher das dein Level überall an der seite\nränder (X) hat damit der Spieler nicht out off bounce gelangt\nund dort schaden(Glitches/Bugs) veruscachen kann!")
+        exit()
+
+    for i in range(len(lvl)):
+        try:
+            if lvl_new[len(lvl_new) - 1] == 3:
+                print("Stell bitte sicher das dein Level überall an der seite\nränder (X) hat damit der Spieler nicht"
+                      " out off bounce gelangt\nund dort schaden(Glitches/Bugs) veruscachen kann!")
+                exit()
+        except IndexError:
+            print('')
+
+        lvl_new.append([])
+        for o in lvl[i]:
+            if o == 'X':
+                lvl_new[i].append(1)
+            if o == 'P':
+                lvl_new[i].append(0)
+            if o == 'F':
+                lvl_new[i].append(0)
+            if o == ' ':
+                lvl_new[i].append(0)
+            if o == 'G':
+                lvl_new[i].append(1)
+    return lvl_new
+
+
 def start(lvl, ki=False, lives=6, delay=0.2):
     mlives = 4
     if not ki:
@@ -60,7 +90,7 @@ def start(lvl, ki=False, lives=6, delay=0.2):
                 break
     else:
         try:
-            mbki.MBKI(lvl, lives)
+            new_mbki.main(lvl, lives, mlives)
         except KeyboardInterrupt:
             print("Exiting ...")
             exit()

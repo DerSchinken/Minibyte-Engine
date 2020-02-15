@@ -81,3 +81,15 @@ def move(pos, r, lvl, lives, mlives):
             lvl[pos] = 3
             lvl[pos-opp] = 2
     return lvl, lives, mlives
+
+
+def kimove(pl_pos, move, lvl, lives, mlives):
+    print(pl_pos)
+    print(move)
+    print(lvl)
+    print(lvl[0])
+    lvl[pl_pos[0] + pl_pos[1]] = 3 # Fehler: pl_pos ist nicht für dieses lvl format! d.h. das ich mal wieder etwas
+    # umschreiben muss -_-
+    lvl[(move[0] + move[1])] = 2
+    pl_pos = move
+    return pl_pos, lvl, lives, mlives
