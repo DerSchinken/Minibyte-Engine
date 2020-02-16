@@ -90,7 +90,7 @@ def start(lvl, ki=False, lives=6, delay=0.2):
                 break
     else:
         try:
-            mbki.main(lvl, lives)
+            mbki.MBKI(lvl, lives)
         except KeyboardInterrupt:
             print("Exiting ...")
             exit()
