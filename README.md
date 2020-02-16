@@ -22,7 +22,7 @@ Für Linux: 24.08.2019
 Für Mac: Nicht getestet   
 Für das Handy sollte es mit Android 5 und QPython3  
 funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen und euer Display ist groß    
-Last update: 27.12.2019 02:18
+Last update: 16.02.2020 09:38
   
 Bedienung  
 -  
