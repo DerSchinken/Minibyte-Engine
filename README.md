@@ -103,4 +103,4 @@ Mit einer Datei und Icon:
 
 Geplante Updates
 -                 
-~~Auch irgendwann 2019 nur später als die KI - GUI mit Multiplayer und Mehreren spielen hintereinander insklusive rätsel (The very Big update)~~ __Die GUI ist in entwickelung aber der rest ist fürs erste aufs Eis gelegt!!__       
+Irgendwan 2020 - GUI mit Multiplayer und insklusive rätsel Modulen       
