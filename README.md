@@ -18,11 +18,13 @@ Der uncompilierte Compiler ist unter ´src´ zu finden
 Released:   
 -  
 Für Windows: 16.08.2019   
-Für Linux: 24.08.2019   
-Für Mac: Nicht getestet   
+GUI für Windows: 15.02.2020
+Für Linux: 24.08.2019
+GUI für Linux: 27.02.2020
+Für Mac: Nicht getestet sollte aber funktionieren   
 Für das Handy sollte es mit Android 5 und QPython3  
 funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen und euer Display ist groß    
-Last update: 16.02.2020 09:38
+Last update: 27.02.2020 22:11
   
 Bedienung  
 -  
