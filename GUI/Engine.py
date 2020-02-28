@@ -83,7 +83,7 @@ class Window:
 
         # Load Map
         if self.load_map:
-            save_load_map.load_map(self.buttons, self.map_name, self)
+            save_load_map.load(self.buttons, self.map_name, self)
 
         # Create element choose bar
         self.obj_buttons.append(tk.Button(self.frame1, text="Wall", command=lambda : self.change_objih("wall"),
@@ -94,30 +94,34 @@ class Window:
         self.obj_buttons.append(tk.Button(self.frame1, text="Player", command=lambda : self.change_objih("player"),
                                           relief=tk.FLAT))
         self.obj_buttons[1].config(bg="white", fg="black")
-        self.obj_buttons[1].pack(side=tk.LEFT, padx=50)
+        self.obj_buttons[1].pack(side=tk.LEFT, padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Gegner", command=lambda : self.change_objih("enemie"),
                                           relief=tk.FLAT))
         self.obj_buttons[2].config(bg="white", fg="black")
-        self.obj_buttons[2].pack(side=tk.LEFT, padx=50)
+        self.obj_buttons[2].pack(side=tk.LEFT, padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Ziel", command=lambda: self.change_objih("finish"),
                                           relief=tk.FLAT))
         self.obj_buttons[3].config(bg="white", fg="black")
-        self.obj_buttons[3].pack(side=tk.LEFT, padx=50)
+        self.obj_buttons[3].pack(side=tk.LEFT, padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Delete", command=lambda: self.change_objih("delete"),
                                           relief=tk.FLAT))
         self.obj_buttons[4].config(bg="white", fg="black")
-        self.obj_buttons[4].pack(side=tk.LEFT, padx=50)
+        self.obj_buttons[4].pack(side=tk.LEFT, padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Save", command=self.save, relief=tk.FLAT))
         self.obj_buttons[5].config(bg="white", fg="black")
-        self.obj_buttons[5].pack(side=tk.LEFT, padx=50)
+        self.obj_buttons[5].pack(side=tk.LEFT, padx=40)
+
+        self.obj_buttons.append(tk.Button(self.frame1, text="Load", command=lambda: save_load_map.load_map(self), relief=tk.FLAT))
+        self.obj_buttons[6].config(bg="white", fg="black")
+        self.obj_buttons[6].pack(side=tk.LEFT, padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Play", command=self.play, relief=tk.FLAT))
-        self.obj_buttons[6].config(bg="white", fg="black")
-        self.obj_buttons[6].pack(side=tk.LEFT)
+        self.obj_buttons[7].config(bg="white", fg="black")
+        self.obj_buttons[7].pack(side=tk.LEFT)
 
         self.root.maxsize(width, height+50)
 
