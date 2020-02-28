@@ -28,6 +28,7 @@ class Window:
         self.root.minsize(width, height)
         self.root.attributes("-alpha", 0.87)
         self.root.bind("<Escape>", lambda e: self.root.destroy())
+        self.root.bind('<Control-s>', self.save)
         self.player_on_field = False
         self.canvas = tk.Canvas(self.root, height=height, width=width)
         self.canvas.pack()
@@ -147,8 +148,8 @@ class Window:
     def change_objih(self, ctobj):
         self.objih = ctobj
 
-    def save(self):
-        save_load_map.save_map(self.buttons, input("Map Name: "), input("Author Name (Standar mäßig auf: Nicht Angegeben): "))
+    def save(self, event=None):
+        save_load_map.save_map(self)
 
     def play(self):
         save_load_map.save_map(self.buttons, "last_map", "temp_save_system")
