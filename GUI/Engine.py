@@ -1,6 +1,6 @@
 import tkinter as tk  # Tkinter
-import buttons  # Those are the hardcoded 400 buttons
 import save_load_map  # Save and Load system
+import os
 
 # width and height of the window
 width = 800
@@ -34,6 +34,7 @@ class Window:
         self.canvas.pack()
         self.win_label = ""
         self.win_label2 = ""
+        self.finisch_on_board = 0
 
         # Load sprites
         self.wall_sprite = tk.PhotoImage(file="sprites\\wall.png").subsample(x=50, y=50)
@@ -65,12 +66,17 @@ class Window:
         self.text_label.place(relx=0.02, rely=0.45)
         self.text_label.config(font=("Courier", 30))
 
+    def create_buttons(self):
+        for i in range(0, 400):
+            self.buttons.append(
+                tk.Button(self.frame2, text=str(i), bg='white', relief=tk.RIDGE, command=lambda x=i: self.place_obj(x)))
+
     def start(self):
         self.frame3.destroy()  # Destroys the Title screen
         self.frame1.config(bg="white")
         self.frame2.config(bg="white")
         self.root.attributes("-alpha", 1)
-        buttons.create_buttons(self, tk)  # Creates all the 400 buttons (Hardcoded)
+        self.create_buttons()  # Creates all the 400 buttons (Hardcoded)
 
         # Creates the buttons properties
         for i in range(400):
@@ -144,9 +150,13 @@ class Window:
             if self.buttons[int(btid)]["text"] == "+":
                 self.player_on_field = False
             self.buttons[int(btid)].config(bg="white", text=":", fg="black", font=("Courier", 30, "bold"), image=self.finisch_sprite)
+            self.finisch_on_board += 1
+            self.buttons[int(btid)]["text"] = ":"
         elif self.objih == "delete":  # The same as the first
             if self.buttons[int(btid)]["text"] == "+":
                 self.player_on_field = False
+            elif self.buttons[int(btid)]["text"] == ":":
+                self.finisch_on_board -= 1
             self.buttons[int(btid)].config(bg="white", text="", fg="white", image=self.floor_sprite)
 
     def change_objih(self, ctobj):
@@ -156,7 +166,11 @@ class Window:
         save_load_map.save_map(self)
 
     def play(self):
-        save_load_map.save_map(self.buttons, "last_map", "temp_save_system")
+        if not self.finisch_on_board > 0:
+            return
+        if not self.player_on_field:
+            return
+        save_load_map.save(self.buttons, "last_map", "temp_save_system")
         self.frame1.destroy()  # Destroys the element "choose bar"
         #self.frame1.place(relwidth=0, relheight=0)
         self.frame2.place(relwidth=1, relheight=1)  # Sets the playing area to (the) full  window/fullscreen
@@ -314,8 +328,8 @@ class Window:
         self.frame1.place(relwidth=1, relheight=0.25)
         self.frame2.place(relwidth=1, relheight=0.75)
         self.frame1.pack(side=tk.BOTTOM)
-        buttons.create_buttons(self, tk)  # Creates all the 400 buttons (Hardcoded)
-        save_load_map.load_map(self.buttons, "last_map by temp_save_system", self)
+        self.create_buttons()
+        save_load_map.load(self.buttons, "last_map by temp_save_system", self)
         self.start()
 
     def unbid_move_keys(self):

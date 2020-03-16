@@ -73,10 +73,10 @@ def load(buttons, map_name, self):
     for i in range(400):  # Changes the new buttons properties with the old (the saved version) properties
         if map_[i] != " ":
             if map_[i] == "+":
-                buttons[i].config(text=map_[i], font=("Courier", 20, "bold"), fg="black", image=self.player_sprite)
+                buttons[i].config(text="*", font=("Courier", 20, "bold"), fg="black", image=self.player_sprite)
             elif map_[i] == "M":
-                buttons[i].config(text=map_[i], font=("Courier", 30, "bold"), fg="black", image=self.enemie_sprite)
+                buttons[i].config(text="M", font=("Courier", 30, "bold"), fg="black", image=self.enemie_sprite)
             elif map_[i] == ":":
-                buttons[i].config(text=map_[i], font=("Courier", 30, "bold"), fg="black", image=self.finisch_sprite)
+                buttons[i].config(text=":", font=("Courier", 30, "bold"), fg="black", image=self.finisch_sprite)
         else:
-            buttons[i].config(bg="black", fg="black", text=map_[i], image=self.wall_sprite)
+            buttons[i].config(bg="black", fg="black", text=" ", image=self.wall_sprite)
