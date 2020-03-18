@@ -1,4 +1,7 @@
-===============================================================================
+[![Python version: 3.X](https://img.shields.io/badge/python-3.3%20--%203.7-blue)](https://python.org) 
+[![License: Unlicense](https://img.shields.io/badge/license-MIT-darkviolet.svg)](https://github.com/drbumm/minibyte-engine/blob/master/LICENSE)
+
+=============================================================================
 # Minibyte-Engine  
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
