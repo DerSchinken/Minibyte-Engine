@@ -174,7 +174,7 @@ class GUI:
 
     def startInstruction(self):
         """
-        Zeigt die Anleitung an, wenn der User auf "Anleitung" drücktt.
+        Zeigt die Anleitung an, wenn der User auf "Anleitung" drücktt. <-- Der erste der diesen Fehler findet bekommt einen platz in den credits. - Der Projekt leiter
         """
         self.packForgetMainPage()
         self.packInstruction()
@@ -192,15 +192,25 @@ class GUI:
         """
         Fenster wird für die Anleitung angepasst.
         Wichtige Variabeln:
-        - vorlage (Beinhaltet den Text der Anleitung)       type: String
+        - vorlage (Beinhaltet den Text der Anleitung)       type: String[] ;)
         - anleitungText                                     type: Label
         - backToMenuButton (füht User zurück zum Hauptmenü) type: Button
         """
-        vorlage = "(Kommt im nächstem Update...)"
+        vorlage = """
+WASD für das steuern des Spielers\n
+Die Pfeil tasten (←→↓^) können auch verwendet\n
+werden.\n
+Für das Platzieren von objekten einfach das\n
+entsprechende Objekt auswählen und platzieren
+                  """
+
+#Ihr könnt auch euren eigenen Objekte hinzufügen.\n
+#Um das zu tun geht einfach in den mods ordner und erstellt\n
+#eine neue python datei
 
         self.anleitungText = Label(self.fenster,
                                    text=vorlage,
-                                   font=("Arial", 20, "italic"),
+                                   font=("Arial", 12, ""),
                                    bg="#444",
                                    fg="#55CCAA")
 
