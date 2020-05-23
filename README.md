@@ -20,13 +20,12 @@ Der uncompilierte Compiler ist unter ´src´ zu finden
 Released:   
 -  
 Für Windows: 16.08.2019   
-GUI für Windows: 15.02.2020
-Für Linux: 24.08.2019
-GUI für Linux: 27.02.2020
-Für Mac: Nicht getestet sollte aber funktionieren   
-Für das Handy sollte es mit Android 5 und QPython3  
-funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen und euer Display ist groß    
-Last update: 27.02.2020 22:11
+GUI für Windows: 15.02.2020    
+Für Linux: 24.08.2019   
+GUI für Linux: 27.02.2020   
+Für Mac: Nicht getestet sollte aber funktionieren     
+Für das Handy sollte es mit Android 5 und QPython3 funktionieren. Wobei ich das nicht empfehlen kann es sei denn ihr habt eine Tastatur angeschlossen und euer Display ist groß    
+Last update: 27.02.2020 22:11    
   
 Bedienung  
 -  
@@ -72,7 +71,7 @@ mnlp.start(lvl) # Um bestimmte anzahl an leben hinzuzufügen einfach nach lvl di
 # Der default wert is 6
 # wenn ihr die Ki euer lvl spielen lassen wollt dann macht einfach:
 #mnlp.start(lvl, True)
-# Die ki ist standart mässig deaktiviert!
+# Die ki ist standart mässig deaktiviert (Die KI ist momentan auch der komplette reinfall)!
 ```
 Eingeben und schon kannst du dein erstes lvl spielen  
 Ein kleines bsp. ist die main.py  
