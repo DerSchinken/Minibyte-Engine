@@ -65,11 +65,11 @@ def load_map(self):
 
 def save(map_, map_name, author="Nicht angegeben"):  # map_ because of the built-in function map
     for map_tile in map_:
-        open("Maps\\" + map_name + " by " + author + ".MBE", "a").write(str(map_tile["text"]) + ";")  # Saves the button properties
+        open("Maps/" + map_name + " by " + author + ".MBE", "a").write(str(map_tile["text"]) + ";")  # Saves the button properties
 
 
 def load(buttons, map_name, self):
-    map_ = open("Maps\\" + map_name + ".MBE", "r").read().split(";")  # reads the button properties
+    map_ = open("Maps/" + map_name + ".MBE", "r").read().split(";")  # reads the button properties
     for i in range(400):  # Changes the new buttons properties with the old (the saved version) properties
         if map_[i] != " ":
             if map_[i] == "+":
