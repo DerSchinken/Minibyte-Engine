@@ -1,6 +1,6 @@
 import tkinter as tk  # Tkinter
+
 import save_load_map  # Save and Load system
-import os
 
 # width and height of the window
 width = 800
@@ -80,7 +80,7 @@ class Window:
 
         # Creates the buttons properties
         for i in range(400):
-            self.buttons[i].place(relx=0+self.x, rely=0+self.y, relwidth=0.05, relheight=0.05)
+            self.buttons[i].place(relx=0 + self.x, rely=0 + self.y, relwidth=0.05, relheight=0.05)
             self.buttons[i].config(fg="white", image=self.floor_sprite)
             self.x += 0.05
             if self.x >= 1.0:
@@ -88,48 +88,49 @@ class Window:
                 self.x = 0
 
         # Load Map
-        if self.load_map:
-            save_load_map.load(self.buttons, self.map_name, self)
+#        if self.load_map:
+#            save_load_map.load(self.buttons, self.map_name, self)
 
         # Create element choose bar
-        self.obj_buttons.append(tk.Button(self.frame1, text="Wall", command=lambda : self.change_objih("wall"),
+        self.obj_buttons.append(tk.Button(self.frame1, text="Wall", command=lambda: self.change_objih("wall"),
                                           relief=tk.FLAT))
         self.obj_buttons[0].config(bg="black", fg="white")
         self.obj_buttons[0].pack(side=tk.LEFT)
 
-        self.obj_buttons.append(tk.Button(self.frame1, text="Player", command=lambda : self.change_objih("player"),
+        self.obj_buttons.append(tk.Button(self.frame1, text="Player", command=lambda: self.change_objih("player"),
                                           relief=tk.FLAT))
         self.obj_buttons[1].config(bg="white", fg="black")
-        self.obj_buttons[1].pack(side=tk.LEFT)#, padx=40)
+        self.obj_buttons[1].pack(side=tk.LEFT)  # , padx=40)
 
-        self.obj_buttons.append(tk.Button(self.frame1, text="Gegner", command=lambda : self.change_objih("enemie"),
+        self.obj_buttons.append(tk.Button(self.frame1, text="Gegner", command=lambda: self.change_objih("enemie"),
                                           relief=tk.FLAT))
         self.obj_buttons[2].config(bg="white", fg="black")
-        self.obj_buttons[2].pack(side=tk.LEFT)#, padx=40)
+        self.obj_buttons[2].pack(side=tk.LEFT)  # , padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Ziel", command=lambda: self.change_objih("finish"),
                                           relief=tk.FLAT))
         self.obj_buttons[3].config(bg="white", fg="black")
-        self.obj_buttons[3].pack(side=tk.LEFT)#, padx=40)
+        self.obj_buttons[3].pack(side=tk.LEFT)  # , padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Delete", command=lambda: self.change_objih("delete"),
                                           relief=tk.FLAT))
         self.obj_buttons[4].config(bg="white", fg="black")
-        self.obj_buttons[4].pack(side=tk.LEFT)#, padx=40)
+        self.obj_buttons[4].pack(side=tk.LEFT)  # , padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Save", command=self.save, relief=tk.FLAT))
         self.obj_buttons[5].config(bg="white", fg="black")
-        self.obj_buttons[5].pack(side=tk.LEFT)#, padx=40)
+        self.obj_buttons[5].pack(side=tk.LEFT)  # , padx=40)
 
-        self.obj_buttons.append(tk.Button(self.frame1, text="Load", command=lambda: save_load_map.load_map(self), relief=tk.FLAT))
+        self.obj_buttons.append(
+            tk.Button(self.frame1, text="Load", command=lambda: save_load_map.load_map(self), relief=tk.FLAT))
         self.obj_buttons[6].config(bg="white", fg="black")
-        self.obj_buttons[6].pack(side=tk.LEFT) #, padx=40)
+        self.obj_buttons[6].pack(side=tk.LEFT)  # , padx=40)
 
         self.obj_buttons.append(tk.Button(self.frame1, text="Play", command=self.play, relief=tk.FLAT))
         self.obj_buttons[7].config(bg="white", fg="black")
         self.obj_buttons[7].pack(side=tk.LEFT)
 
-        self.root.maxsize(width, height+50)
+        self.root.maxsize(width, height + 50)
 
     def place_obj(self, btid):
         if self.objih == "wall":
@@ -140,16 +141,19 @@ class Window:
         elif self.objih == "player":  # The same as the first
             if not self.player_on_field:  # Checks if the player is't on the field
                 self.player_on_field = True  # When yes then set the player_on_field var. to True
-                self.buttons[int(btid)].config(bg="white", text="+", fg="black", font=("Courier", 20, "bold"), image=self.player_sprite)  # And
+                self.buttons[int(btid)].config(bg="white", text="+", fg="black", font=("Courier", 20, "bold"),
+                                               image=self.player_sprite)  # And
                 # then set the place to the player
         elif self.objih == "enemie":  # The same as the first
             if self.buttons[int(btid)]["text"] == "+":
                 self.player_on_field = False
-            self.buttons[int(btid)].config(bg="white", text="M", fg="black", font=("Courier", 30, "bold"), image=self.enemie_sprite)
+            self.buttons[int(btid)].config(bg="white", text="M", fg="black", font=("Courier", 30, "bold"),
+                                           image=self.enemie_sprite)
         elif self.objih == "finish":  # The same as the first
             if self.buttons[int(btid)]["text"] == "+":
                 self.player_on_field = False
-            self.buttons[int(btid)].config(bg="white", text=":", fg="black", font=("Courier", 30, "bold"), image=self.finisch_sprite)
+            self.buttons[int(btid)].config(bg="white", text=":", fg="black", font=("Courier", 30, "bold"),
+                                           image=self.finisch_sprite)
             self.finisch_on_board += 1
             self.buttons[int(btid)]["text"] = ":"
         elif self.objih == "delete":  # The same as the first
@@ -162,7 +166,7 @@ class Window:
     def change_objih(self, ctobj):
         self.objih = ctobj
 
-    def save(self, event=None):
+    def save(self):
         save_load_map.save_map(self)
 
     def play(self):
@@ -172,7 +176,7 @@ class Window:
             return
         save_load_map.save(self.buttons, "last_map", "temp_save_system")
         self.frame1.destroy()  # Destroys the element "choose bar"
-        #self.frame1.place(relwidth=0, relheight=0)
+        # self.frame1.place(relwidth=0, relheight=0)
         self.frame2.place(relwidth=1, relheight=1)  # Sets the playing area to (the) full  window/fullscreen
         self.objih = None  # Sets the element in your hand to none
 
@@ -205,14 +209,15 @@ class Window:
                     break
             try:
                 # Try to change the position of th player
-                if self.buttons[self.ppos-20]["text"] != " " and self.buttons[self.ppos-20]["text"] != "M" and \
-                        self.buttons[self.ppos-20]["text"] != ":":
+                if self.buttons[self.ppos - 20]["text"] != " " and self.buttons[self.ppos - 20]["text"] != "M" and \
+                        self.buttons[self.ppos - 20]["text"] != ":":
                     self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos-20].config(text="+", fg="black", font=("Courier", 20, "bold"), image=self.player_sprite)
-                if self.buttons[self.ppos-20]["text"] == ":":
+                    self.buttons[self.ppos - 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                        image=self.player_sprite)
+                if self.buttons[self.ppos - 20]["text"] == ":":
                     self.win()
                     self.unbid_move_keys()
-                elif self.buttons[self.ppos-20]["text"] == "M":
+                elif self.buttons[self.ppos - 20]["text"] == "M":
                     self.lives -= 1
                     if self.lives <= 0:
                         self.unbid_move_keys()
@@ -232,14 +237,15 @@ class Window:
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos+20]["text"] != " " and self.buttons[self.ppos+20]["text"] != "M" and \
-                        self.buttons[self.ppos+20]["text"] != ":":
+                if self.buttons[self.ppos + 20]["text"] != " " and self.buttons[self.ppos + 20]["text"] != "M" and \
+                        self.buttons[self.ppos + 20]["text"] != ":":
                     self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos+20].config(text="+", fg="black", font=("Courier", 20, "bold"), image=self.player_sprite)
-                if self.buttons[self.ppos+20]["text"] == ":":
+                    self.buttons[self.ppos + 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                        image=self.player_sprite)
+                if self.buttons[self.ppos + 20]["text"] == ":":
                     self.win()
                     self.unbid_move_keys()
-                elif self.buttons[self.ppos+20]["text"] == "M":
+                elif self.buttons[self.ppos + 20]["text"] == "M":
                     self.lives -= 1
                     if self.lives <= 0:
                         self.unbid_move_keys()
@@ -259,14 +265,15 @@ class Window:
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos-1]["text"] != " " and self.buttons[self.ppos-1]["text"] != "M" and \
-                        self.buttons[self.ppos-1]["text"] != ":":
+                if self.buttons[self.ppos - 1]["text"] != " " and self.buttons[self.ppos - 1]["text"] != "M" and \
+                        self.buttons[self.ppos - 1]["text"] != ":":
                     self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos-1].config(text="+", fg="black", font=("Courier", 20, "bold"), image=self.player_sprite)
-                if self.buttons[self.ppos-1]["text"] == ":":
+                    self.buttons[self.ppos - 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                       image=self.player_sprite)
+                if self.buttons[self.ppos - 1]["text"] == ":":
                     self.win()
                     self.unbid_move_keys()
-                elif self.buttons[self.ppos-1]["text"] == "M":
+                elif self.buttons[self.ppos - 1]["text"] == "M":
                     self.lives -= 1
                     if self.lives <= 0:
                         self.unbid_move_keys()
@@ -286,14 +293,15 @@ class Window:
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos+1]["text"] != " " and self.buttons[self.ppos+1]["text"] != "M" and \
-                        self.buttons[self.ppos+1]["text"] != ":":
+                if self.buttons[self.ppos + 1]["text"] != " " and self.buttons[self.ppos + 1]["text"] != "M" and \
+                        self.buttons[self.ppos + 1]["text"] != ":":
                     self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos+1].config(text="+", fg="black", font=("Courier", 20, "bold"), image=self.player_sprite)
-                if self.buttons[self.ppos+1]["text"] == ":":
+                    self.buttons[self.ppos + 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                       image=self.player_sprite)
+                if self.buttons[self.ppos + 1]["text"] == ":":
                     self.win()
                     self.unbid_move_keys()
-                elif self.buttons[self.ppos+1]["text"] == "M":
+                elif self.buttons[self.ppos + 1]["text"] == "M":
                     self.lives -= 1
                     if self.lives <= 0:
                         self.unbid_move_keys()
@@ -319,8 +327,8 @@ class Window:
         self.frame1 = tk.Frame()
         self.frame2 = tk.Frame()
         self.root.unbind("<space>")
-        #self.win_label.destroy()
-        #self.win_label2.destroy()
+        # self.win_label.destroy()
+        # self.win_label2.destroy()
         self.buttons = []
         self.x = 0
         self.y = 0
