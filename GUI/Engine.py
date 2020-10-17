@@ -1,6 +1,7 @@
 import tkinter as tk  # Tkinter
 
 import save_load_map  # Save and Load system
+from compiler import *
 
 # width and height of the window
 width = 800
@@ -126,9 +127,14 @@ class Window:
         self.obj_buttons[6].config(bg="white", fg="black")
         self.obj_buttons[6].pack(side=tk.LEFT)  # , padx=40)
 
-        self.obj_buttons.append(tk.Button(self.frame1, text="Play", command=self.play, relief=tk.FLAT))
+        self.obj_buttons.append(
+            tk.Button(self.frame1, text="Compile", command=lambda: compiler(self), relief=tk.FLAT))
         self.obj_buttons[7].config(bg="white", fg="black")
-        self.obj_buttons[7].pack(side=tk.LEFT)
+        self.obj_buttons[7].pack(side=tk.LEFT)  # , padx=40)
+
+        self.obj_buttons.append(tk.Button(self.frame1, text="Play", command=self.play, relief=tk.FLAT))
+        self.obj_buttons[8].config(bg="white", fg="black")
+        self.obj_buttons[8].pack(side=tk.LEFT)
 
         self.root.maxsize(width, height + 50)
 
@@ -201,117 +207,117 @@ class Window:
         self.root.bind('<4>', lambda x: right(self))  # This doesn't bind
         self.root.bind('<6>', lambda x: left(self))
 
-        def up(self):
+        def up(self1):
             # Get the player position
             for i in range(400):
-                if self.buttons[i]["text"] == "+":
-                    self.ppos = i
+                if self1.buttons[i]["text"] == "+":
+                    self1.ppos = i
                     break
             try:
                 # Try to change the position of th player
-                if self.buttons[self.ppos - 20]["text"] != " " and self.buttons[self.ppos - 20]["text"] != "M" and \
-                        self.buttons[self.ppos - 20]["text"] != ":":
-                    self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos - 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
-                                                        image=self.player_sprite)
-                if self.buttons[self.ppos - 20]["text"] == ":":
-                    self.win()
-                    self.unbid_move_keys()
-                elif self.buttons[self.ppos - 20]["text"] == "M":
-                    self.lives -= 1
-                    if self.lives <= 0:
-                        self.unbid_move_keys()
-                        game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
-                        game_over2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
+                if self1.buttons[self1.ppos - 20]["text"] != " " and self1.buttons[self1.ppos - 20]["text"] != "M" and \
+                        self1.buttons[self1.ppos - 20]["text"] != ":":
+                    self1.buttons[self1.ppos].config(text="", image=self1.floor_sprite)
+                    self1.buttons[self1.ppos - 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                          image=self1.player_sprite)
+                if self1.buttons[self1.ppos - 20]["text"] == ":":
+                    self1.win()
+                    self1.unbid_move_keys()
+                elif self1.buttons[self1.ppos - 20]["text"] == "M":
+                    self1.lives -= 1
+                    if self1.lives <= 0:
+                        self1.unbid_move_keys()
+                        game_over = tk.Label(self1.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                        game_over2 = tk.Label(self1.frame2, text="Press space to continue", font=("Courier", 11, ""))
                         game_over.pack()
                         game_over2.pack()
-                        self.root.bind("<space>", lambda x: self.continue_())
+                        self1.root.bind("<space>", lambda x: self1.continue_())
             except IndexError:
-                self.buttons[self.ppos].config(text="+")
+                self1.buttons[self1.ppos].config(text="+")
 
-        def down(self):
+        def down(self4):
             # Get the player position
             for i in range(400):
-                if self.buttons[i]["text"] == "+":
-                    self.ppos = i
+                if self4.buttons[i]["text"] == "+":
+                    self4.ppos = i
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos + 20]["text"] != " " and self.buttons[self.ppos + 20]["text"] != "M" and \
-                        self.buttons[self.ppos + 20]["text"] != ":":
-                    self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos + 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
-                                                        image=self.player_sprite)
-                if self.buttons[self.ppos + 20]["text"] == ":":
-                    self.win()
-                    self.unbid_move_keys()
-                elif self.buttons[self.ppos + 20]["text"] == "M":
-                    self.lives -= 1
-                    if self.lives <= 0:
-                        self.unbid_move_keys()
-                        game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
-                        game_over2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
+                if self4.buttons[self4.ppos + 20]["text"] != " " and self4.buttons[self4.ppos + 20]["text"] != "M" and \
+                        self4.buttons[self4.ppos + 20]["text"] != ":":
+                    self4.buttons[self4.ppos].config(text="", image=self4.floor_sprite)
+                    self4.buttons[self4.ppos + 20].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                          image=self4.player_sprite)
+                if self4.buttons[self4.ppos + 20]["text"] == ":":
+                    self4.win()
+                    self4.unbid_move_keys()
+                elif self4.buttons[self4.ppos + 20]["text"] == "M":
+                    self4.lives -= 1
+                    if self4.lives <= 0:
+                        self4.unbid_move_keys()
+                        game_over = tk.Label(self4.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                        game_over2 = tk.Label(self4.frame2, text="Press space to continue", font=("Courier", 11, ""))
                         game_over.pack()
                         game_over2.pack()
-                        self.root.bind("<space>", lambda x: self.continue_())
+                        self4.root.bind("<space>", lambda x: self4.continue_())
             except IndexError:
-                self.buttons[self.ppos].config(text="+")
+                self4.buttons[self4.ppos].config(text="+")
 
-        def right(self):
+        def right(self2):
             # Get the player position
             for i in range(400):
-                if self.buttons[i]["text"] == "+":
-                    self.ppos = i
+                if self2.buttons[i]["text"] == "+":
+                    self2.ppos = i
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos - 1]["text"] != " " and self.buttons[self.ppos - 1]["text"] != "M" and \
-                        self.buttons[self.ppos - 1]["text"] != ":":
-                    self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos - 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
-                                                       image=self.player_sprite)
-                if self.buttons[self.ppos - 1]["text"] == ":":
-                    self.win()
-                    self.unbid_move_keys()
-                elif self.buttons[self.ppos - 1]["text"] == "M":
-                    self.lives -= 1
-                    if self.lives <= 0:
-                        self.unbid_move_keys()
-                        game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
-                        game_over2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
+                if self2.buttons[self2.ppos - 1]["text"] != " " and self2.buttons[self2.ppos - 1]["text"] != "M" and \
+                        self2.buttons[self2.ppos - 1]["text"] != ":":
+                    self2.buttons[self2.ppos].config(text="", image=self2.floor_sprite)
+                    self2.buttons[self2.ppos - 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                         image=self2.player_sprite)
+                if self2.buttons[self2.ppos - 1]["text"] == ":":
+                    self2.win()
+                    self2.unbid_move_keys()
+                elif self2.buttons[self2.ppos - 1]["text"] == "M":
+                    self2.lives -= 1
+                    if self2.lives <= 0:
+                        self2.unbid_move_keys()
+                        game_over = tk.Label(self2.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                        game_over2 = tk.Label(self2.frame2, text="Press space to continue", font=("Courier", 11, ""))
                         game_over.pack()
                         game_over2.pack()
-                        self.root.bind("<space>", lambda x: self.continue_())
+                        self2.root.bind("<space>", lambda x: self2.continue_())
             except IndexError:
-                self.buttons[self.ppos].config(text="+")
+                self2.buttons[self2.ppos].config(text="+")
 
-        def left(self):
+        def left(self3):
             # Get the player position
             for i in range(400):
-                if self.buttons[i]["text"] == "+":
-                    self.ppos = i
+                if self3.buttons[i]["text"] == "+":
+                    self3.ppos = i
                     break
             try:
                 # Try to change the player position
-                if self.buttons[self.ppos + 1]["text"] != " " and self.buttons[self.ppos + 1]["text"] != "M" and \
-                        self.buttons[self.ppos + 1]["text"] != ":":
-                    self.buttons[self.ppos].config(text="", image=self.floor_sprite)
-                    self.buttons[self.ppos + 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
-                                                       image=self.player_sprite)
-                if self.buttons[self.ppos + 1]["text"] == ":":
-                    self.win()
-                    self.unbid_move_keys()
-                elif self.buttons[self.ppos + 1]["text"] == "M":
-                    self.lives -= 1
-                    if self.lives <= 0:
-                        self.unbid_move_keys()
-                        game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
-                        game_over2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
+                if self3.buttons[self3.ppos + 1]["text"] != " " and self3.buttons[self3.ppos + 1]["text"] != "M" and \
+                        self3.buttons[self3.ppos + 1]["text"] != ":":
+                    self3.buttons[self3.ppos].config(text="", image=self3.floor_sprite)
+                    self3.buttons[self3.ppos + 1].config(text="+", fg="black", font=("Courier", 20, "bold"),
+                                                         image=self3.player_sprite)
+                if self3.buttons[self3.ppos + 1]["text"] == ":":
+                    self3.win()
+                    self3.unbid_move_keys()
+                elif self3.buttons[self3.ppos + 1]["text"] == "M":
+                    self3.lives -= 1
+                    if self3.lives <= 0:
+                        self3.unbid_move_keys()
+                        game_over = tk.Label(self3.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                        game_over2 = tk.Label(self3.frame2, text="Press space to continue", font=("Courier", 11, ""))
                         game_over.pack()
                         game_over2.pack()
-                        self.root.bind("<space>", lambda x: self.continue_())
+                        self3.root.bind("<space>", lambda x: self3.continue_())
             except IndexError:
-                self.buttons[self.ppos].config(text="+")
+                self3.buttons[self3.ppos].config(text="+")
 
     def win(self):
         self.frame1.destroy()

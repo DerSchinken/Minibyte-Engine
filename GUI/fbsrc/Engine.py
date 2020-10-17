@@ -25,7 +25,7 @@ class Window:
         self.canvas.pack()
         self.win_label = ""
         self.win_label2 = ""
-        self.map_name = open("data.MBD", "r").read().split("\n")[1].split("\"")[1]
+        self.map_name = open("data.MBD", "r").read().split("\n")[1].split("=")[1]
 
         # Load sprites
         self.wall_sprite = tk.PhotoImage(file="sprites/wall.png").subsample(x=50, y=50)
@@ -46,7 +46,7 @@ class Window:
         self.frame3.place(relwidth=1, relheight=1)
 
         # Set the title
-        self.root.title(open("data.MBD", "r").read().split("\n")[1].split("\"")[1])
+        self.root.title(open("data.MBD", "r").read().split("\n")[2].split("=")[1] + " by " + open("data.MBD", "r").read().split("\n")[3].split("=")[1])
 
         # This is the button that is behind the label and starts the game if you click anywhere on the window
         self.button1 = tk.Button(self.frame3, text="", command=lambda x=1: self.play())
@@ -75,7 +75,7 @@ class Window:
             if self.x >= 1.0:
                 self.y += 0.05
                 self.x = 0
-        save_load_map.load(self.buttons, self.map_name + ".MBE", self)
+        save_load_map.load(self.buttons, self.map_name, self)
 
         # Movement
         self.root.bind('<w>', lambda x: up())
