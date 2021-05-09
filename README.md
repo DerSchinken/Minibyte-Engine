@@ -4,7 +4,7 @@
 # Minibyte-Engine  
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
-Dieses Projekt hat mir 1 Monat und 2 Wochen meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
+
 ___Die GUI ist in Entwicklung **!**___
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
