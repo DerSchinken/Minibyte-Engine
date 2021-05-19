@@ -106,5 +106,5 @@ Mit einer Datei und Icon:
 
 Geplante Updates
 -                 
-Irgendwan 2020-2021 - GUI mit Multiplayer und insklusive rätsel Modulen      
-Irgendwann 2020-2021 Rework des movements in der cmd version
+Irgendwan idk - GUI mit Multiplayer und insklusive rätsel Modulen      
+Irgendwann idk - Rework des movements in der cmd version
