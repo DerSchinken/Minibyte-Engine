@@ -28,10 +28,13 @@ class Window:
         self.obj_buttons = []
         self.player_position = 0
         self.done = False
+
         self.root = tk.Tk()
+        # setup window configs
         self.root.maxsize(width, height)
         self.root.minsize(width, height)
         self.root.attributes("-alpha", 0.87)
+        # self.root.wm_attributes("-transparentcolor", 'pink')
         self.root.bind("<Escape>", lambda e: self.root.destroy())
         self.root.bind('<Control-s>', self.save)
         self.player_on_board = False
@@ -55,6 +58,7 @@ class Window:
 
         self.frame2 = tk.Frame(self.root, bg="white")
         self.frame2.place(relwidth=1, relheight=0.75)
+        self.frame2.pack(side="top")
 
         self.frame3 = tk.Frame(self.root, bg="white")
         self.frame3.place(relwidth=1, relheight=1)
@@ -178,9 +182,13 @@ class Window:
         self.root.maxsize(width, height + 50)
 
     def place_obj(self, button_id):
+        # check if object overwrites important parts of the map
+        if self.buttons[int(button_id)]["text"] == "+":
+            self.player_on_board = False
+        elif self.buttons[int(button_id)]["text"] == ":":
+            self.finish_on_board -= 1
+
         if self.object_in_hand == "wall":
-            if self.buttons[int(button_id)]["text"] == "+":  # Checks if the object place is the player
-                self.player_on_board = False  # If yes then set player_on_field to False
             self.buttons[int(button_id)].config(bg="black", text=" ", fg="black", image=self.wall_sprite)
             # And then set the place to the object
         elif self.object_in_hand == "player":  # The same as the first
@@ -190,22 +198,14 @@ class Window:
                                                     image=self.player_sprite)  # And
                 # then set the place to the player
         elif self.object_in_hand == "enemy":  # The same as the first
-            if self.buttons[int(button_id)]["text"] == "+":
-                self.player_on_board = False
             self.buttons[int(button_id)].config(bg="white", text="M", fg="black", font=("Courier", 30, "bold"),
                                                 image=self.enemy_sprite)
         elif self.object_in_hand == "finish":  # The same as the first
-            if self.buttons[int(button_id)]["text"] == "+":
-                self.player_on_board = False
             self.buttons[int(button_id)].config(bg="white", text=":", fg="black", font=("Courier", 30, "bold"),
                                                 image=self.finish_sprite)
             self.finish_on_board += 1
             self.buttons[int(button_id)]["text"] = ":"
         elif self.object_in_hand == "delete":  # The same as the first
-            if self.buttons[int(button_id)]["text"] == "+":
-                self.player_on_board = False
-            elif self.buttons[int(button_id)]["text"] == ":":
-                self.finish_on_board -= 1
             self.buttons[int(button_id)].config(bg="white", text="", fg="white", image=self.floor_sprite)
 
     def change_object_in_hand(self, change_to_object):
@@ -216,10 +216,21 @@ class Window:
         save_load_map.save_map(self)
 
     def play(self):
+        error_label1 = None
+        error_label2 = None
+        # check for errors and display error
         if not self.finish_on_board > 0:
-            return
+            error_label1 = tk.Label(self.frame2, text="No Finish on board!", font=("Courier", 30, "bold"))
+            error_label1.pack()
+            self.frame2.after(2000, lambda: error_label1.destroy())
         if not self.player_on_board:
+            error_label2 = tk.Label(self.frame2, text="No Player on board!", font=("Courier", 30, "bold"))
+            error_label2.pack()
+            self.frame2.after(2000, lambda: error_label2.destroy())
+
+        if error_label1 or error_label2:
             return
+
         save_load_map.save(self.buttons, "last_map", "temp_save_system")
         self.frame1.destroy()  # Destroys the element "choose bar"
         # self.frame1.place(relwidth=0, relheight=0)

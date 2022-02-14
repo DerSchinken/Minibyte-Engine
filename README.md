@@ -3,3 +3,9 @@
 =============================================================================
 # Minibyte-Engine  
 By Dr.Bumm  
+
+# Usage
+```bash
+python Start.py
+```
+more details coming soon
