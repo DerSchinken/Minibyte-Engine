@@ -4,7 +4,7 @@
 # Minibyte-Engine  
 By Dr.Bumm  
 Webseite: http://index12.bplaced.net/  Ist in bearbeitung also bitte nicht so viel erwarten  
-
+Dieses Projekt hat mir 1 Monat und 2 Wochen meiner Lebens zeit geraubt ich hoffe dieses Projekt gefällt dir   
 ___Die GUI ist in Entwicklung **!**___
 
 Die main.exe ist ein Test spiel zur Demonstration nur in einer einzigen Datei   
@@ -106,5 +106,5 @@ Mit einer Datei und Icon:
 
 Geplante Updates
 -                 
-Irgendwan idk - GUI mit Multiplayer und insklusive rätsel Modulen      
-Irgendwann idk - Rework des movements in der cmd version
+Irgendwan 2020-2021 - GUI mit Multiplayer und insklusive rätsel Modulen      
+Irgendwann 2020-2021 Rework des movements in der cmd version
