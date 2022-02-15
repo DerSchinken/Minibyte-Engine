@@ -8,4 +8,9 @@ By Dr.Bumm
 ```bash
 python Start.py
 ```
-more details coming soon
+# Compiling
+while in the editor save the map and remember the map name  
+then press the compile button and fill in the data   
+the compiled game will be located in the builds folder
+
+more info coming soon

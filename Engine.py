@@ -3,8 +3,9 @@ import save_load_map  # Save and Load system
 import mbe_compiler  # Compiler
 
 # to-do list
-# TODO: add readme
+# DONE: fix temp save system
 # DONE: add compiler (mbe_compiler)
+# TODO: add readme
 # TODO: create setup
 
 # width and height of the window

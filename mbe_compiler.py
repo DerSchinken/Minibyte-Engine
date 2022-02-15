@@ -2,18 +2,6 @@ from tkinter import *
 from shutil import *
 import os
 
-data_template = """
-[general_data]
-map_name={}
-title={}
-author={}
-width={}
-height={}
-
-[extra_modules]
-{}
-"""
-
 
 def compiler():
     # noinspection PyShadowingNames
