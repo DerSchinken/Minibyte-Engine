@@ -496,5 +496,5 @@ class Window:
 
 # For testing:
 if __name__ == "__main__":
-    window = Window(load_map=True, map_name="Test MAP by DerSchinken (Dr.Bumm)")  # , play=True)
+    window = Window()
     window.mainloop()
