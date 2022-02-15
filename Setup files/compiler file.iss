@@ -2,28 +2,28 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Minibyte-Engine"
-#define MyAppVersion "2.6"
-#define MyAppPublisher "Minibyte Inc."
-#define MyAppURL "http://index12.bplaced.net/"
+#define MyAppVersion "2.7.0"
+#define MyAppPublisher "DerSchinken Org."
 #define MyAppExeName "Engine.exe"
+#define MyAppAssocName MyAppName + " File"
+#define MyAppAssocExt ".MBE"
+#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{026EF113-CCF6-4F85-B147-AE31AC9322B8}
+AppId={{6EEA7793-4531-471E-80D0-44DE216ACD1A}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
+ChangesAssociations=yes
 DisableProgramGroupPage=yes
-; The [Icons] "quicklaunchicon" entry uses {userappdata} but its [Tasks] entry has a proper IsAdminInstallMode Check.
-UsedUserAreasWarning=no
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
+PrivilegesRequiredOverridesAllowed=dialog
+OutputBaseFilename=Minibyte-Engine Setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -32,6 +32,7 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "armenian"; MessagesFile: "compiler:Languages\Armenian.isl"
 Name: "brazilianportuguese"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+Name: "bulgarian"; MessagesFile: "compiler:Languages\Bulgarian.isl"
 Name: "catalan"; MessagesFile: "compiler:Languages\Catalan.isl"
 Name: "corsican"; MessagesFile: "compiler:Languages\Corsican.isl"
 Name: "czech"; MessagesFile: "compiler:Languages\Czech.isl"
@@ -56,21 +57,25 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\Engine.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\sprites\*"; DestDir: "{app}\sprites"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\Engine.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\save_load_map.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\Start.py"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\paulh\Desktop\Minibyte-Engine-master\GUI\Maps\*"; DestDir: "{app}\Maps"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\DerSchinken\Desktop\Programmieren\my-Python-stuff\Minibyte-Engine-master\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\DerSchinken\Desktop\Programmieren\my-Python-stuff\Minibyte-Engine-master\save_load_map.py"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\DerSchinken\Desktop\Programmieren\my-Python-stuff\Minibyte-Engine-master\Start.py"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\DerSchinken\Desktop\Programmieren\my-Python-stuff\Minibyte-Engine-master\fbsrc\*"; DestDir: "{app}\fbsrc"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\DerSchinken\Desktop\Programmieren\my-Python-stuff\Minibyte-Engine-master\sprites\*"; DestDir: "{app}\sprites"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[Registry]
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocExt}\OpenWithProgids"; ValueType: string; ValueName: "{#MyAppAssocKey}"; ValueData: ""; Flags: uninsdeletevalue
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}"; ValueType: string; ValueName: ""; ValueData: "{#MyAppAssocName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\{#MyAppExeName},0"
+Root: HKA; Subkey: "Software\Classes\{#MyAppAssocKey}\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\{#MyAppExeName}"" ""%1"""
+Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes"; ValueType: string; ValueName: ".myp"; ValueData: ""
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
