@@ -5,7 +5,7 @@ import mbe_compiler  # Compiler
 # to-do list
 # DONE: fix temp save system
 # DONE: add compiler (mbe_compiler)
-# TODO: create setup
+# DONE: create setup
 # TODO: make readme better
 
 # width and height of the window
