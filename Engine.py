@@ -1,5 +1,11 @@
 import tkinter as tk  # Tkinter
 import save_load_map  # Save and Load system
+import mbe_compiler  # Compiler
+
+# to-do list
+# TODO: add readme
+# DONE: add compiler (mbe_compiler)
+# TODO: create setup
 
 # width and height of the window
 width = 800
@@ -18,8 +24,9 @@ def clamp(_min, _max, value) -> int or float:
 
 
 class Window:
-    def __init__(self, *, load_map=False, map_name=""):
+    def __init__(self, *, load_map=False, map_name="", play=False):
         # Sets vars for the program
+        self._play = play
         self.map_name = map_name
         self.load_map = load_map
         self.lives = 6
@@ -72,8 +79,8 @@ class Window:
 
         # Title screen
         self.text_label = tk.Label(self.frame3, text="Welcome to the Minibyte-Engine!!")
-        self.text_label.place(relx=0.02, rely=0.45)
-        self.text_label.config(font=("Courier", 30))
+        self.text_label.config(font=("Courier", 30),)
+        self.text_label.place(anchor="center", rely=0.45, relx=0.5)
 
     def create_buttons(self):
         self.frame2.destroy()
@@ -179,7 +186,18 @@ class Window:
         self.obj_buttons[7].config(bg="white", fg="black")
         self.obj_buttons[7].pack(side=tk.LEFT)
 
+        self.obj_buttons.append(
+            tk.Button(
+                self.frame1, text="Compile", command=mbe_compiler.compiler, relief=tk.FLAT
+            )
+        )
+
+        self.obj_buttons[8].config(bg="white", fg="black")
+        self.obj_buttons[8].pack(side=tk.LEFT)
+
         self.root.maxsize(width, height + 50)
+        if self._play:
+            self.play()
 
     def place_obj(self, button_id):
         # check if object overwrites important parts of the map
@@ -277,6 +295,18 @@ class Window:
                     self.unbid_move_keys()
                 elif self.buttons[self.player_position - 20]["text"] == "M":
                     self.lives -= 1
+            except IndexError:
+                self.buttons[self.player_position].config(text="+")
+
+            if self.lives <= 0:
+                if self._play:
+                    self.unbid_move_keys()
+                    game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                    game_over2 = tk.Label(self.frame2, text="Press space to retry", font=("Courier", 11, ""))
+                    game_over.pack()
+                    game_over2.pack()
+                    self.root.bind("<space>", lambda x: self.continue_())
+                else:
                     if self.lives <= 0:
                         self.unbid_move_keys()
                         game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
@@ -284,8 +314,6 @@ class Window:
                         game_over.pack()
                         game_over2.pack()
                         self.root.bind("<space>", lambda x: self.continue_())
-            except IndexError:
-                self.buttons[self.player_position].config(text="+")
 
         def down():
             # Get the player position
@@ -306,6 +334,18 @@ class Window:
                     self.unbid_move_keys()
                 elif self.buttons[self.player_position + 20]["text"] == "M":
                     self.lives -= 1
+            except IndexError:
+                self.buttons[self.player_position].config(text="+")
+
+            if self.lives <= 0:
+                if self._play:
+                    self.unbid_move_keys()
+                    game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                    game_over2 = tk.Label(self.frame2, text="Press space to retry", font=("Courier", 11, ""))
+                    game_over.pack()
+                    game_over2.pack()
+                    self.root.bind("<space>", lambda x: self.continue_())
+                else:
                     if self.lives <= 0:
                         self.unbid_move_keys()
                         game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
@@ -313,8 +353,6 @@ class Window:
                         game_over.pack()
                         game_over2.pack()
                         self.root.bind("<space>", lambda x: self.continue_())
-            except IndexError:
-                self.buttons[self.player_position].config(text="+")
 
         def right():
             # Get the player position
@@ -335,6 +373,18 @@ class Window:
                     self.unbid_move_keys()
                 elif self.buttons[self.player_position - 1]["text"] == "M":
                     self.lives -= 1
+            except IndexError:
+                self.buttons[self.player_position].config(text="+")
+
+            if self.lives <= 0:
+                if self._play:
+                    self.unbid_move_keys()
+                    game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                    game_over2 = tk.Label(self.frame2, text="Press space to retry", font=("Courier", 11, ""))
+                    game_over.pack()
+                    game_over2.pack()
+                    self.root.bind("<space>", lambda x: self.continue_())
+                else:
                     if self.lives <= 0:
                         self.unbid_move_keys()
                         game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
@@ -342,8 +392,6 @@ class Window:
                         game_over.pack()
                         game_over2.pack()
                         self.root.bind("<space>", lambda x: self.continue_())
-            except IndexError:
-                self.buttons[self.player_position].config(text="+")
 
         def left():
             # Get the player position
@@ -364,6 +412,18 @@ class Window:
                     self.unbid_move_keys()
                 elif self.buttons[self.player_position + 1]["text"] == "M":
                     self.lives -= 1
+            except IndexError:
+                self.buttons[self.player_position].config(text="+")
+
+            if self.lives <= 0:
+                if self._play:
+                    self.unbid_move_keys()
+                    game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
+                    game_over2 = tk.Label(self.frame2, text="Press space to retry", font=("Courier", 11, ""))
+                    game_over.pack()
+                    game_over2.pack()
+                    self.root.bind("<space>", lambda x: self.continue_())
+                else:
                     if self.lives <= 0:
                         self.unbid_move_keys()
                         game_over = tk.Label(self.frame2, text="Game Over!\nYOU DIED!", font=("Courier", 30, "bold"))
@@ -371,17 +431,24 @@ class Window:
                         game_over.pack()
                         game_over2.pack()
                         self.root.bind("<space>", lambda x: self.continue_())
-            except IndexError:
-                self.buttons[self.player_position].config(text="+")
 
     def win(self):
-        self.frame1.destroy()
-        self.win_label = tk.Label(self.frame2, text="You Win!", font=("Courier", 30, "bold"))
-        self.win_label2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
-        self.win_label.pack()
-        self.win_label2.pack()
+        if not self._play:
+            self.frame1.destroy()
+            self.win_label = tk.Label(self.frame2, text="You Win!", font=("Courier", 30, "bold"))
+            self.win_label2 = tk.Label(self.frame2, text="Press space to continue", font=("Courier", 11, ""))
+            self.win_label.pack()
+            self.win_label2.pack()
 
-        self.root.bind("<space>", lambda x: self.continue_())
+            self.root.bind("<space>", lambda x: self.continue_())
+        else:
+            self.frame1.destroy()
+            self.win_label = tk.Label(self.frame2, text="You Win!", font=("Courier", 30, "bold"))
+            self.win_label2 = tk.Label(self.frame2, text="Press space to play again", font=("Courier", 11, ""))
+            self.win_label.pack()
+            self.win_label2.pack()
+
+            self.root.bind("<space>", lambda x: self.continue_())
 
     def continue_(self):
         self.frame2.destroy()
@@ -428,5 +495,5 @@ class Window:
 
 # For testing:
 if __name__ == "__main__":
-    window = Window(load_map=True, map_name="Test MAP by DerSchinken (Dr.Bumm)")
+    window = Window(load_map=True, map_name="Test MAP by DerSchinken (Dr.Bumm)")  # , play=True)
     window.mainloop()

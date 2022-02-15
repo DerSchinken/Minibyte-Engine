@@ -1,6 +1,5 @@
 from tkinter import *
 from typing import List
-import pickle
 
 
 def save_map(self):
