@@ -11,7 +11,7 @@ class AbstractObjManager(ABC):
     manageable_objects = []
     manager_obj: AbstractObj = None
 
-    def __init__(self, obj: AbstractObj):  # TODO: Typehint for abstract class implementation !
+    def __init__(self, obj):
         self.manager_obj = obj(__ObjControllerInstance=True)
         self.manageable_objects = self.manager_obj.objects
 
