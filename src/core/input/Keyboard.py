@@ -67,16 +67,20 @@ class Keyboard(InputEvent):
             self.events[char + "_up"].remove(func)
 
     def __on_key_down(self, e):
-        char = e.char + "_down"
-        self.keys_pressed[char] = True
-        if not self.events.get(char) or not self.keys_pressed.get(char):
-            return
-        for func in self.events.get(char):
-            func(e)
+        # FIXME: This will impact key combinations but for now it will work
+        # Possible workaround: separate function for adding key combos and then
+        # put it into a list and check if the other key is pressed, no time now tho
+        self.keys_pressed[e.char] = True
+
+        for pressed_key in self.keys_pressed.keys():
+            if self.keys_pressed[pressed_key]:
+                for func in self.events.get(pressed_key + "_down"):
+                    func(e)
 
     def __on_key_up(self, e):
         char = e.char + "_up"
-        self.keys_pressed[char] = False
+        self.keys_pressed[e.char] = False
+
         if not self.events.get(char) or not self.keys_pressed.get(char):
             return
         for func in self.events.get(char):
