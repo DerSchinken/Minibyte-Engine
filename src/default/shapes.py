@@ -10,9 +10,10 @@ triangle = Shape(triangle_vertices, size=50, fill="black")
 
 
 def get_all_circle_coords(x_center, y_center, radius, n_points):
+    # Shamelessly stolen from: https://gis.stackexchange.com/a/395090
     thetas = [i / n_points * tau for i in range(n_points)]
-    circle_coords = [(radius * cos(theta) + x_center, radius * sin(theta) + y_center) for theta in thetas]
-    return circle_coords
+    circle_coordinates = [(radius * cos(theta) + x_center, radius * sin(theta) + y_center) for theta in thetas]
+    return circle_coordinates
 
 
 # Using the second function to generate all the pairs of coordinates.

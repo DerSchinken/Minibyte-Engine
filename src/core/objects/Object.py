@@ -35,6 +35,7 @@ class Object:
             self.__drawn = "object-" + str(randint(1, 100000000000000000))
             while self.__drawn in self.object_ids:
                 self.__drawn = "object-" + str(randint(1, 100000000000000000))
+            self.object_ids.append(self.__drawn)
 
             self.parent.create_polygon(translated_shape, tag=self.__drawn, **self.shape.options)
         else:
