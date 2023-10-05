@@ -11,12 +11,29 @@ class Keyboard(InputEvent):
     so consider using the root window instead of a Canvas
     """
     keys_pressed = {}
+    key_combos = []
 
-    def __init__(self, parent: Canvas | Window):
+    def __init__(self, parent: Canvas | Window, event_loop_time: int = 16):
+        """
+        :param parent: Parent which this event handler will be attached to
+        :param event_loop_time: Event loop repetition time in ms
+        """
         super().__init__(parent)
+
+        self.event_loop_time = event_loop_time
 
         self.add_event("<KeyPress>", self.__on_key_down)
         self.add_event("<KeyRelease>", self.__on_key_up)
+        self.parent.after(1, self.__key_press_event_loop)
+
+    def register_key_combination(self, combination: str, func: Callable):
+        """
+        Registers a key combination.
+        :param combination: Key combination
+        :param func: Function which is triggered on key combo
+        :return:
+        """
+        self.add_event(combination, func)
 
     def on_key_down(self, char: str, func: Callable):
         """
@@ -70,12 +87,10 @@ class Keyboard(InputEvent):
         # FIXME: This will impact key combinations but for now it will work
         # Possible workaround: separate function for adding key combos and then
         # put it into a list and check if the other key is pressed, no time now tho
-        self.keys_pressed[e.char] = True
+        if not self.events.get(e.char + "_down"):
+            return
 
-        for pressed_key in self.keys_pressed.keys():
-            if self.keys_pressed[pressed_key]:
-                for func in self.events.get(pressed_key + "_down"):
-                    func(e)
+        self.keys_pressed[e.char] = True
 
     def __on_key_up(self, e):
         char = e.char + "_up"
@@ -85,3 +100,11 @@ class Keyboard(InputEvent):
             return
         for func in self.events.get(char):
             func(e)
+
+    def __key_press_event_loop(self):
+        for pressed_key in self.keys_pressed.keys():
+            if self.keys_pressed[pressed_key]:
+                for func in self.events.get(pressed_key + "_down"):
+                    func()
+
+        self.parent.after(self.event_loop_time, self.__key_press_event_loop)
