@@ -33,6 +33,15 @@ class Keyboard(InputEvent):
         :param func: Function which is triggered on key combo
         :return:
         """
+        if "+" in combination:
+            _combination = []
+            for key in combination.split("+"):
+                special_key = self.__sanitize_special_key(key)
+                if special_key:
+                    _combination.append(special_key)
+                else:
+                    _combination.append(f"<{key}>")
+
         self.add_event(combination, func)
 
     def on_key_down(self, char: str, func: Callable):
@@ -42,6 +51,10 @@ class Keyboard(InputEvent):
         :param func: Function which is triggered on char down
         :return:
         """
+        special_key = self.__sanitize_special_key(char)
+        if special_key:
+            char = special_key
+
         if self.events.get(char):
             self.events[char + "_down"].append(func)
         else:
@@ -54,6 +67,10 @@ class Keyboard(InputEvent):
         :param func: Function which is triggered on char down
         :return:
         """
+        special_key = self.__sanitize_special_key(char)
+        if special_key:
+            char = special_key
+
         if func == "*" or func == "all":
             self.events[char + "_down"] = []
         else:
@@ -66,6 +83,10 @@ class Keyboard(InputEvent):
         :param func: Function which is triggered on char down
         :return:
         """
+        special_key = self.__sanitize_special_key(char)
+        if special_key:
+            char = special_key
+
         if self.events.get(char):
             self.events[char + "_up"].append(func)
         else:
@@ -78,26 +99,39 @@ class Keyboard(InputEvent):
         :param func: Function which is triggered on char down
         :return:
         """
+        special_key = self.__sanitize_special_key(char)
+        if special_key:
+            char = special_key
+
         if func == "*" or func == "all":
             self.events[char + "_up"] = []
         else:
             self.events[char + "_up"].remove(func)
 
     def __on_key_down(self, e):
-        # FIXME: This will impact key combinations but for now it will work
-        # Possible workaround: separate function for adding key combos and then
-        # put it into a list and check if the other key is pressed, no time now tho
-        if not self.events.get(e.char + "_down"):
-            return
+        char = e.char
 
-        self.keys_pressed[e.char] = True
+        if not self.events.get(char + "_down"):
+            special_key = self.__get_special_key(e)
+            if special_key and self.events.get(special_key + "_down"):
+                char = special_key
+            else:
+                return
+
+        self.keys_pressed[char] = True
 
     def __on_key_up(self, e):
         char = e.char + "_up"
-        self.keys_pressed[e.char] = False
 
-        if not self.events.get(char) or not self.keys_pressed.get(char):
-            return
+        if not self.events.get(char) or self.keys_pressed.get(char):
+            special_key = self.__get_special_key(e)
+            char = special_key + "_up"
+            if not (special_key and self.events.get(char)):
+                self.keys_pressed[char.replace("_up", "")] = False
+                return
+
+        self.keys_pressed[char.replace("_up", "")] = False
+
         for func in self.events.get(char):
             func(e)
 
@@ -108,3 +142,28 @@ class Keyboard(InputEvent):
                     func()
 
         self.parent.after(self.event_loop_time, self.__key_press_event_loop)
+
+    @staticmethod
+    def __sanitize_special_key(key: str) -> str | bool:
+        if key.lower() == "ctrl":
+            return "<Control-Key>"
+        elif key.lower() == "shift":
+            return "<Shift-Key>"
+        elif key.lower() == "alt":
+            return "<Alt-Key>"
+        elif key.lower() == "backspace":
+            return "<BackSpace>"
+
+        return False
+
+    def __get_special_key(self, key_event) -> str:
+        if str(key_event.keysym).startswith("Control"):
+            return self.__sanitize_special_key("ctrl")
+        elif str(key_event.keysym).startswith("Shift"):
+            return self.__sanitize_special_key("shift")
+        elif str(key_event.keysym).startswith("Alt"):
+            return self.__sanitize_special_key("alt")
+        elif str(key_event.keysym).startswith("BackSpace"):
+            return self.__sanitize_special_key("backspace")
+
+        return key_event.char
