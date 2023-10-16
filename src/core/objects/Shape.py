@@ -1,4 +1,5 @@
 from typing import Union, Iterator
+from random import randint
 
 VERTICES = Union[tuple[tuple[int, int]] | tuple[list[int, int]] | list[tuple[int, int]] | list[list[int, int]]]
 VERTEX = Union[tuple[int, int] | list[int, int]]
@@ -22,6 +23,27 @@ class Shape:
 
         if self.size:
             self.update_size()
+
+    def draw(self, position, object_id, object_ids, drawable) -> str:
+        translated_shape = [(x + position[0], y + position[1]) for x, y in self]
+        if not object_id:
+            # Create unique tag
+            object_id = "object-" + str(randint(1, 100000000000000000))
+            while object_id in object_ids:
+                object_id = "object-" + str(randint(1, 100000000000000000))
+            object_ids.append(object_id)
+
+            drawable.create_polygon(translated_shape, tag=object_id, **self.options)
+        else:
+            self.update(position, object_id, drawable)
+
+        return object_id
+
+    def update(self, position, object_id, drawable):
+        translated_shape = [(x + position[0], y + position[1]) for x, y in self]
+
+        drawable.delete(object_id)
+        drawable.create_polygon(translated_shape, tag=object_id, **self.options)
 
     @staticmethod
     def check_vertices(vertices: VERTICES, exceptions: bool = False) -> bool:

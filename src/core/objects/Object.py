@@ -1,58 +1,96 @@
-from random import randint
-from tkinter import PhotoImage
-
 from src.core.display.Canvas import Canvas
+from src.core.objects.MBEImage import MBEImage
 from src.core.objects.Shape import Shape
 
 
 class Object:
     object_ids = []
+    all_objects = []
 
-    def __init__(self, parent: Canvas, position: tuple[int, int], shape: Shape = None, img: str = None):
+    def __init__(self, parent: Canvas, position: tuple[int, int], *, solid: bool = True, shape: Shape = None,
+                 img: MBEImage = None):
         self.parent = parent
         self.position = position
-        self.shape = shape
-        self.img = img
-        self.__drawn = False
+        self._id = False
+        self.solid = solid
+
+        if shape:
+            self.render_definition = shape
+        elif img:
+            self.render_definition = img
 
         # Maybe
         # self.init_object(parent, position, *args, **kwargs)
+        Object.all_objects.append(self)
 
         self.draw()
 
     def draw(self):
-        if self.shape:
-            return self.draw_shape()
-        elif self.img:
-            return self.draw_img()
+        if not self.render_definition:
+            raise ValueError("No rendering definition defined")
 
-        raise ValueError("No definition for drawing")
+        self._id = self.render_definition.draw(self.position, self._id, self.object_ids, self.parent)
 
-    def draw_shape(self):
-        translated_shape = [(x + self.position[0], y + self.position[1]) for x, y in self.shape]
-        if not self.__drawn:
-            # Create unique tag
-            self.__drawn = "object-" + str(randint(1, 100000000000000000))
-            while self.__drawn in self.object_ids:
-                self.__drawn = "object-" + str(randint(1, 100000000000000000))
-            self.object_ids.append(self.__drawn)
+    def update(self):
+        self.render_definition.update(self.position, self._id, self.parent)
 
-            self.parent.create_polygon(translated_shape, tag=self.__drawn, **self.shape.options)
+    def check_collision(self):
+        directions = []
+        for other_object in Object.all_objects:
+            if other_object is not self and other_object.solid:
+                x1, y1, x2, y2 = self.get_bounding_box()
+                x3, y3, x4, y4 = other_object.get_bounding_box()
+
+                if x2 > x3 and x1 < x4 and y2 > y3 and y1 < y4:
+                    # Objects are colliding
+                    if x2 > x4:
+                        directions.append("left")
+                    if x1 < x3:
+                        directions.append("right")
+                    if y2 > y4:
+                        directions.append("up")
+                    if y1 < y3:
+                        directions.append("down")
+
+        return directions
+
+    def check_collision_with_threshold(
+            self, threshold: int | float | list[int, int, int, int] | tuple[int, int, int, int]
+    ) -> list[str] | list:
+        """
+        Check collisions with a threshold
+        :param threshold: Can be int, float or a list/tuple which is in [left, right, up, down]
+        """
+        if not (isinstance(threshold, int) or isinstance(threshold, float)):
+            if not (isinstance(threshold, tuple) or isinstance(threshold, list)):
+                raise ValueError("Invalid value for 'threshold'")
         else:
-            self.update_shape()
+            threshold = [threshold] * 4  # TODO
 
-    def draw_img(self):
-        img = PhotoImage(file=self.img)
-        self.parent.create_image(self.position[0], self.position[1], image=img)
-        # TODO
+        directions = []
+        for other_object in Object.all_objects:
+            if other_object is not self and other_object.solid:
+                x1, y1, x2, y2 = self.get_bounding_box()
+                x3, y3, x4, y4 = other_object.get_bounding_box()
 
-    def update_shape(self):
-        translated_shape = [(x + self.position[0], y + self.position[1]) for x, y in self.shape]
+                if x2 > x3 and x1 < x4 and y2 > y3 and y1 < y4:
+                    # Objects are colliding
+                    if x2 > x4:
+                        directions.append("left")
+                    if x1 < x3:
+                        directions.append("right")
+                    if y2 > y4:
+                        directions.append("up")
+                    if y1 < y3:
+                        directions.append("down")
 
-        self.parent.delete(self.__drawn)
-        self.parent.create_polygon(translated_shape, tag=self.__drawn, **self.shape.options)
+        return directions
 
-    # def check_collision(self) -> bool:
+    def get_bounding_box(self) -> tuple[int, int, int, int]:
+        if self._id is not None:
+            return self.parent.bbox(self._id)
+        else:
+            return 0, 0, 0, 0  # Return a default empty bounding box if the ID is not set
 
     def get_position(self) -> tuple[int, int]:
         return self.position
@@ -60,19 +98,7 @@ class Object:
     def set_position(self, position: tuple[int, int]):
         self.position = position
 
-
-if __name__ == "__main__":
-    # Quick tests:
-    shape_vertices = ((1, -1), (1, 1), (-1, 1), (-1, -1))
-
-    from tkinter import Tk
-
-    root = Tk()
-    canvas = Canvas(root, width=400, height=400)
-    canvas.pack()
-
-    square = Shape(shape_vertices, fill="", outline="red", dash=True, joinstyle="round", smooth=True, size=100)
-
-    z = Object(canvas, (200, 200), square)
-    z.draw()
-    root.mainloop()
+    def destroy(self):
+        Object.all_objects.remove(self)
+        self.parent.delete(self._id)
+        del self

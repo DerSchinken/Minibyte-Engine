@@ -1,1 +1,1 @@
-from .shapes import square, triangle, circle
+from .shapes import square, triangle, circle, star
