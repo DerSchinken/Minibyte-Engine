@@ -5,10 +5,14 @@ from time import time, sleep
 class Window(Tk):
     def __init__(self, *args, **kwargs):
         self.__display_fps = kwargs.pop("display_fps")
+        title = kwargs.pop("title", None)
 
         super().__init__(*args, **kwargs)
 
-        self.title("Minibyte-Engine Default Title")
+        if title is not None:
+            self.title(title)
+        else:
+            self.title("Minibyte-Engine Default Title")
 
         self.frame_count = 0
         self.start_time = time()
