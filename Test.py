@@ -35,28 +35,28 @@ def on_click(e):
 
 def move_left():
     for keyboard_object in keyboard_objects:
-        if "left" not in keyboard_object.check_collision_with_threshold([0, 10, 10, 10]):
+        if "left" not in keyboard_object.check_collision([0, 10, 10, 10]):
             keyboard_object.position = (keyboard_object.position[0] - 10, keyboard_object.position[1])
             keyboard_object.update()
 
 
 def move_right():
     for keyboard_object in keyboard_objects:
-        if "right" not in keyboard_object.check_collision_with_threshold([10, 0, 10, 10]):
+        if "right" not in keyboard_object.check_collision([10, 0, 10, 10]):
             keyboard_object.position = (keyboard_object.position[0] + 10, keyboard_object.position[1])
             keyboard_object.update()
 
 
 def move_down():
     for keyboard_object in keyboard_objects:
-        if "down" not in keyboard_object.check_collision_with_threshold([10, 10, 0, 10]):
+        if "down" not in keyboard_object.check_collision([10, 10, 0, 10]):
             keyboard_object.position = (keyboard_object.position[0], keyboard_object.position[1] + 10)
             keyboard_object.update()
 
 
 def move_up():
     for keyboard_object in keyboard_objects:
-        if "up" not in keyboard_object.check_collision_with_threshold([10, 10, 10, 0]):
+        if "up" not in keyboard_object.check_collision([10, 10, 10, 0]):
             keyboard_object.position = (keyboard_object.position[0], keyboard_object.position[1] - 10)
             keyboard_object.update()
 
