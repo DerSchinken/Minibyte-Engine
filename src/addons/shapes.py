@@ -1,7 +1,7 @@
 from math import tau, cos, sin
 from pickle import load as pickle_load, dump as pickle_dump
 
-from src.core.objects.Shape import Shape, VERTICES
+from src.core.objects.drawables.Shape import Shape, VERTICES
 
 
 def square() -> Shape:

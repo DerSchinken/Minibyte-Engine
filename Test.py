@@ -14,14 +14,14 @@ mouse_shape = star()
 mouse_shape.options["fill"] = ""
 mouse_shape.options["dash"] = 1
 mouse_shape.options["outline"] = "black"
-mouse_object = Object(game_canvas, (0, 0), solid=True, shape=mouse_shape)
+mouse_object = Object(game_canvas, mouse_shape, (0, 0), solid=False)
 
 keyboard_shape = square()
 keyboard_shape.options["fill"] = ""
 keyboard_shape.options["dash"] = 1
 keyboard_shape.options["outline"] = "black"
 
-keyboard_objects = [Object(game_canvas, (0, 0), shape=keyboard_shape)]
+keyboard_objects = [Object(game_canvas, keyboard_shape, (0, 0))]
 
 
 def follow_mouse(e):
@@ -30,12 +30,12 @@ def follow_mouse(e):
 
 
 def on_click(e):
-    keyboard_objects.append(Object(game_canvas, (e.x, e.y), solid=False, shape=square()))
+    keyboard_objects.append(Object(game_canvas, star(), (e.x, e.y), solid=False))
 
 
 def move_left():
     for keyboard_object in keyboard_objects:
-        if "left" not in keyboard_object.check_collision([0, 10, 10, 10]):
+        if "left" not in keyboard_object.check_collision([20, 0, 0, 0]):
             keyboard_object.position = (keyboard_object.position[0] - 10, keyboard_object.position[1])
             keyboard_object.update()
 
@@ -72,6 +72,6 @@ keyboard.on_key_down("ctrl", move_right)
 
 keyboard.register_key_combination("<Control-Key><Shift-Key><W><A>", lambda e: print("strg+w"))
 
-Object(game_canvas, (400, 200), shape=circle()).draw()
+Object(game_canvas, circle(), (400, 200)).draw()
 
 game_window.mainloop()

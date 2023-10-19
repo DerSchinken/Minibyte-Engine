@@ -1,27 +1,23 @@
 from src.core.display.Canvas import Canvas
-from src.core.objects.MBEImage import MBEImage
-from src.core.objects.Shape import Shape
+from src.core.objects.ObjectManager import ObjectManager
+from src.core.objects.drawables.Drawable import Drawable
 
 
 class Object:
-    object_ids = []
-    all_objects = []
-
-    def __init__(self, parent: Canvas, position: tuple[int, int], *, solid: bool = True, shape: Shape = None,
-                 img: MBEImage = None):
+    def __init__(self, parent: Canvas, render_definition: Drawable, position: tuple[int, int], *, solid: bool = True):
         self.parent = parent
+
+        self.render_definition = render_definition
+        if not isinstance(self.render_definition, Drawable):
+            raise TypeError("'render_definition' is not of type 'Drawable'!")
+
         self.position = position
-        self._id = False
         self.solid = solid
 
-        if shape:
-            self.render_definition = shape
-        elif img:
-            self.render_definition = img
-
-        # Maybe
-        # self.init_object(parent, position, *args, **kwargs)
-        Object.all_objects.append(self)
+        # Create id and add to manager
+        self._id: str = ObjectManager.generate_id()
+        ObjectManager.object_id_list.append(self._id)
+        ObjectManager.object_list.append(self)
 
         self.draw()
 
@@ -34,7 +30,7 @@ class Object:
         if not self.render_definition:
             raise ValueError("No rendering definition defined")
 
-        self._id = self.render_definition.draw(self.position, self._id, self.object_ids, self.parent)
+        self.render_definition.draw(self.parent, self.position, self._id)
 
     def update(self):
         """
@@ -44,32 +40,32 @@ class Object:
             return self.draw()
 
         if not self.check_off_screen():
-            self.render_definition.update(self.position, self._id, self.parent)
+            self.render_definition.update(self.parent, self.position, self._id)
 
     def check_collision(self, threshold: int | float | list[int, int, int, int] | tuple[int, int, int, int] = None):
-        if threshold is None:
+        if threshold is None:  # [left, right, up, down]
             threshold = 0
         if not (isinstance(threshold, int) or isinstance(threshold, float)):
             if not (isinstance(threshold, tuple) or isinstance(threshold, list)):
                 raise ValueError("Invalid value for 'threshold'")
         else:
-            threshold = [threshold] * 4  # TODO
+            threshold = [threshold] * 4  # FIXME: This isn't working as intended
 
         directions = []
-        for other_object in Object.all_objects:
+        for other_object in ObjectManager.object_list:
             if other_object is not self and other_object.solid:
                 x1, y1, x2, y2 = self.get_bounding_box()
                 x3, y3, x4, y4 = other_object.get_bounding_box()
 
                 if x2 > x3 and x1 < x4 and y2 > y3 and y1 < y4:
                     # Objects are colliding
-                    if x2 > x4:
+                    if x2 > x4 and x2 - x4 > threshold[0]:
                         directions.append("left")
-                    if x1 < x3:
+                    if x1 < x3 and x3 - x1 > threshold[1]:
                         directions.append("right")
-                    if y2 > y4:
+                    if y2 > y4 and y2 - y4 > threshold[2]:
                         directions.append("up")
-                    if y1 < y3:
+                    if y1 < y3 and y3 - y1 > threshold[3]:
                         directions.append("down")
 
         return directions
@@ -113,6 +109,6 @@ class Object:
         self.position = position
 
     def destroy(self):
-        Object.all_objects.remove(self)
+        ObjectManager.object_list.remove(self)
+        ObjectManager.object_id_list.remove(self._id)
         self.parent.delete(self._id)
-        del self

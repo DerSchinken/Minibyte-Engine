@@ -1,11 +1,11 @@
-from typing import Union, Iterator
-from random import randint
+from typing import Iterator
 
-VERTICES = Union[tuple[tuple[int, int]] | tuple[list[int, int]] | list[tuple[int, int]] | list[list[int, int]]]
-VERTEX = Union[tuple[int, int] | list[int, int]]
+from src.core.constants import VERTICES, VERTEX, POSITION
+from src.core.display.Canvas import Canvas
+from src.core.objects.drawables.Drawable import Drawable
 
 
-class Shape:
+class Shape(Drawable):
     # https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/create_polygon.html
     def __init__(self, shape_vertices: VERTICES, *, size: int | VERTEX = None, **options):
         """
@@ -24,26 +24,17 @@ class Shape:
         if self.size:
             self.update_size()
 
-    def draw(self, position, object_id, object_ids, drawable) -> str:
+    def draw(self, master: Canvas, position: POSITION, object_id: str) -> None:
         translated_shape = [(x + position[0], y + position[1]) for x, y in self]
-        if not object_id:
-            # Create unique tag
-            object_id = "object-" + str(randint(1, 100000000000000000))
-            while object_id in object_ids:
-                object_id = "object-" + str(randint(1, 100000000000000000))
-            object_ids.append(object_id)
+        # noinspection PyArgumentList
+        master.create_polygon(translated_shape, tag=object_id, **self.options)
 
-            drawable.create_polygon(translated_shape, tag=object_id, **self.options)
-        else:
-            self.update(position, object_id, drawable)
-
-        return object_id
-
-    def update(self, position, object_id, drawable):
+    def update(self, master: Canvas, position: POSITION, object_id: str) -> None:
         translated_shape = [(x + position[0], y + position[1]) for x, y in self]
 
-        drawable.delete(object_id)
-        drawable.create_polygon(translated_shape, tag=object_id, **self.options)
+        master.delete(object_id)
+        # noinspection PyArgumentList
+        master.create_polygon(translated_shape, tag=object_id, **self.options)
 
     @staticmethod
     def check_vertices(vertices: VERTICES, exceptions: bool = False) -> bool:
