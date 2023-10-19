@@ -1,10 +1,15 @@
+from typing import Union
+
+from src.core.constants import POSITION
 from src.core.display.Canvas import Canvas
 from src.core.objects.ObjectManager import ObjectManager
 from src.core.objects.drawables.Drawable import Drawable
 
+THRESHOLD = Union[int | float | list[int, int, int, int] | tuple[int, int, int, int]]
+
 
 class Object:
-    def __init__(self, parent: Canvas, render_definition: Drawable, position: tuple[int, int], *, solid: bool = True):
+    def __init__(self, parent: Canvas, render_definition: Drawable, position: POSITION, *, solid: bool = True):
         self.parent = parent
 
         self.render_definition = render_definition
@@ -21,7 +26,7 @@ class Object:
 
         self.draw()
 
-    def draw(self):
+    def draw(self) -> None:
         """
         This draws the object
         Important: Doesn't check if object is off-screen
@@ -32,7 +37,7 @@ class Object:
 
         self.render_definition.draw(self.parent, self.position, self._id)
 
-    def update(self):
+    def update(self) -> None:
         """
         Updates self on the display when in scope of the parent
         """
@@ -42,7 +47,7 @@ class Object:
         if not self.check_off_screen():
             self.render_definition.update(self.parent, self.position, self._id)
 
-    def check_collision(self, threshold: int | float | list[int, int, int, int] | tuple[int, int, int, int] = None):
+    def check_collision(self, threshold: THRESHOLD = None) -> list[str]:
         if threshold is None:  # [left, right, up, down]
             threshold = 0
         if not (isinstance(threshold, int) or isinstance(threshold, float)):
