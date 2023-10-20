@@ -1,6 +1,8 @@
 from tkinter import Tk, PhotoImage, Label
 from time import time, sleep
 
+from src.core.display.nostalgic_start import GUI as NGUI
+
 
 class Window(Tk):
     ROOT = None
@@ -8,6 +10,8 @@ class Window(Tk):
     def __init__(self, *args, **kwargs):
         self.__display_fps = kwargs.pop("display_fps")
         title = kwargs.pop("title", None)
+        if kwargs.pop("MBE2019", None):
+            self.__nostalgic_start()
 
         super().__init__(*args, **kwargs)
 
@@ -24,8 +28,22 @@ class Window(Tk):
         self.__sleep_time = 0
         self.__fps = 0  # 0 = Infinity
 
+        self.__alt_f4_disabled = False
+
         if not Window.ROOT:
             Window.ROOT = self
+
+    def always_on_top(self):
+        """
+        Toggle always on top
+        """
+        self.attributes("-topmost", not self.attributes("-topmost"))
+
+    def fullscreen(self):
+        """
+        Toggle fullscreen on/off
+        """
+        self.attributes("-fullscreen", not self.attributes("-fullscreen"))
 
     def display_fps(self) -> None:  # I think this still capping yo
         current_time = time()
@@ -46,6 +64,18 @@ class Window(Tk):
                 self.fps_label.config(text=f"FPS: {fps:.2f}")
 
             self.fps_label.lift()
+
+    def disable_alt_f4(self):
+        """
+        Toggle whether alt+F4 closes the window or does nothing
+        """
+        if self.__alt_f4_disabled:
+            self.__alt_f4_disabled = False
+            self.unbind("<Alt-F4>")
+        else:
+            def pressed_alt_f4():
+                return "break"
+            self.bind("<Alt-F4>", pressed_alt_f4())
 
     @property
     def fps(self) -> int | float:
@@ -84,7 +114,6 @@ class Window(Tk):
         if fps:
             self.__fps = fps
             self.__sleep_time = 1/fps
-            print(self.__sleep_time, 1/fps)
         try:
             while self.running:
                 self.update()
@@ -107,3 +136,8 @@ class Window(Tk):
         for child in self.winfo_children():
             child.destroy()
         self.destroy()
+
+    @staticmethod
+    def __nostalgic_start():
+        ngui = NGUI()
+        ngui.fenster.mainloop()

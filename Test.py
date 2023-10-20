@@ -3,6 +3,10 @@ from src.std import *
 
 game_window = Window(display_fps=True)
 game_window.geometry("800x600")
+# game_window.fullscreen()
+game_window.disable_alt_f4()
+# game_window.always_on_top()
+# ^ IMPORTANT: Please make sure to set the taskmanager to always stay on top before testing this!
 game_canvas = Canvas(game_window)
 
 game_canvas["bg"] = "red"
@@ -41,6 +45,9 @@ Movement(keyboard_objects[-1])
 
 keyboard.register_key_combination("<Control-Key><Shift-Key><W><A>", lambda e: print("strg+w"))
 
-Object(game_canvas, circle(), (400, 200)).draw()
+Object(game_canvas, circle(), (400, 200))
+
+test_img = MBEImage(file="test.png")
+Object(game_canvas, test_img, (700, 200))
 
 game_window.mainloop()
