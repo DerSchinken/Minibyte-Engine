@@ -32,7 +32,9 @@ def star() -> Shape:
 
 
 def circle() -> Shape:
-    def get_all_circle_coordinates(x_center, y_center, radius, n_points):
+    def get_all_circle_coordinates(
+            x_center: int | float, y_center: int | float, radius: int | float, n_points: int
+    ) -> list[tuple[int | float, int | float]]:
         # Shamelessly stolen from: https://gis.stackexchange.com/a/395090
         thetas = [i / n_points * tau for i in range(n_points)]  # τ
         circle_coordinates = [(radius * cos(theta) + x_center, radius * sin(theta) + y_center) for theta in thetas]
@@ -43,7 +45,7 @@ def circle() -> Shape:
     return Shape(circle_vertices, size=50, fill="black")
 
 
-def shape_to_file(shape: Shape, file: str, _type: str = "mbs"):
+def shape_to_file(shape: Shape, file: str, _type: str = "mbs") -> None:
     """
     Saves Shapes to file
     :param shape: the Shape to save

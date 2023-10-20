@@ -55,7 +55,7 @@ class Shape(Drawable):
 
         return True
 
-    def update_size(self):
+    def update_size(self) -> None:
         adjusted = []
         for x, y in self.original_vertices:
             if isinstance(self.size, tuple) or isinstance(self.size, list):

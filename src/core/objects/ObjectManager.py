@@ -4,7 +4,7 @@ class ObjectManager:
     last_id: int = 0
 
     @staticmethod
-    def generate_id():
+    def generate_id() -> str:
         """
         Generates a Unique object id
         """

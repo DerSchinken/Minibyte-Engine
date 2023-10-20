@@ -22,7 +22,7 @@ class Window(Tk):
         self.__sleep_time = 0
         self.__fps = 0  # 0 = Infinity
 
-    def display_fps(self):  # I think this still capping yo
+    def display_fps(self) -> None:  # I think this still capping yo
         current_time = time()
         elapsed_time = current_time - self.start_time
         self.frame_count += 1
@@ -43,7 +43,7 @@ class Window(Tk):
             self.fps_label.lift()
 
     @property
-    def fps(self):
+    def fps(self) -> int | float:
         return self.__fps
 
     @fps.setter
@@ -54,7 +54,7 @@ class Window(Tk):
         self.__sleep_time = 1/fps
         self.__fps = fps
 
-    def set_icon(self, icon_path: str):
+    def set_icon(self, icon_path: str) -> None:
         """
         Sets the icon of the window, will not update when icon file changes
         Supported formats: png, jpg, ico, gif (On macOS only ico is supported)
@@ -67,7 +67,7 @@ class Window(Tk):
         else:
             self.wm_iconbitmap(icon_path, True)
 
-    def mainloop(self, fps: int = 0):
+    def mainloop(self, fps: int = 0) -> None:
         """
         Be aware that this function uses time.sleep to achieve the given fps, this can, on some versions of Python, \
         lead to inaccurate fps.
@@ -91,7 +91,7 @@ class Window(Tk):
             self.close()
             raise e
 
-    def close(self):
+    def close(self) -> None:
         """
         Safely destroys all .afters and children of this window
         """

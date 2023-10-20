@@ -1,11 +1,7 @@
-from typing import Union
-
-from src.core.constants import POSITION
+from src.core.constants import POSITION, THRESHOLD
 from src.core.display.Canvas import Canvas
 from src.core.objects.ObjectManager import ObjectManager
 from src.core.objects.drawables.Drawable import Drawable
-
-THRESHOLD = Union[int | float | list[int, int, int, int] | tuple[int, int, int, int]]
 
 
 class Object:
@@ -92,7 +88,7 @@ class Object:
         else:
             return 0, 0, 0, 0  # Return a default empty bounding box if the ID is not set
 
-    def check_off_screen(self, extra: int = 100):
+    def check_off_screen(self, extra: int = 100) -> bool:
         """
         Checks if the object is off_screen
         :return: True when off-screen otherwise False
@@ -113,7 +109,7 @@ class Object:
     def set_position(self, position: tuple[int, int]):
         self.position = position
 
-    def destroy(self):
+    def destroy(self) -> None:
         ObjectManager.object_list.remove(self)
         ObjectManager.object_id_list.remove(self._id)
         self.parent.delete(self._id)

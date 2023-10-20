@@ -16,42 +16,24 @@ class Mouse(InputEvent):
             # 1 is needed since the position attribute is shared for all instances
             self.add_event("<Motion>", self.__on_move)
 
-    def on_right_click(self, func: Callable):
+    def on_right_click(self, func: Callable) -> None:
         self.add_event("<Button-1>", func)
 
-    def on_middle_click(self, func: Callable):
+    def on_middle_click(self, func: Callable) -> None:
         self.add_event("<Button-2>", func)
 
-    def on_left_click(self, func: Callable):
+    def on_left_click(self, func: Callable) -> None:
         self.add_event("<Button-3>", func)
 
-    def on_scroll_up(self, func: Callable):
+    def on_scroll_up(self, func: Callable) -> None:
         self.add_event("<Button-4>", func)
 
-    def on_scroll_down(self, func: Callable):
+    def on_scroll_down(self, func: Callable) -> None:
         self.add_event("<Button-5>", func)
 
-    def on_move(self, func: Callable):
+    def on_move(self, func: Callable) -> None:
         self.add_event("<Motion>", func)
 
-    def __on_move(self, e):
+    def __on_move(self, e) -> None:
         self.position[0] = e.x
         self.position[1] = e.y
-
-
-if __name__ == "__main__":
-    root = Window()
-
-    a = Mouse(root)
-    b = Mouse(root)
-
-
-    def on_move(e):
-        print(a.events)
-        print((e.x, e.y), a.position, b.position)
-
-
-    a.on_move(on_move)
-    b.on_right_click(lambda e: print("Click"))
-
-    root.mainloop()

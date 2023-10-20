@@ -1,4 +1,5 @@
 from typing import Callable
+from tkinter import Event
 
 from src.core.display.Canvas import Canvas
 from src.core.display.Window import Window
@@ -10,8 +11,8 @@ class Keyboard(InputEvent):
     IMPORTANT: This event handler will not work if you use a non focused Canvas,
     so consider using the root window instead of a Canvas
     """
-    keys_pressed = {}
-    key_combos = []
+    keys_pressed: dict[str: bool] = {}
+    key_combos: list[list[str]] = []
 
     def __init__(self, parent: Canvas | Window, event_loop_time: int = 16):
         """
@@ -26,7 +27,7 @@ class Keyboard(InputEvent):
         self.add_event("<KeyRelease>", self.__on_key_up)
         self.parent.after(1, self.__key_press_event_loop)
 
-    def register_key_combination(self, combination: str, func: Callable):
+    def register_key_combination(self, combination: str, func: Callable) -> None:
         """
         Registers a key combination.
         :param combination: Key combination
@@ -44,7 +45,7 @@ class Keyboard(InputEvent):
 
         self.add_event(combination, func)
 
-    def on_key_down(self, char: str, func: Callable):
+    def on_key_down(self, char: str, func: Callable) -> None:
         """
         Adds specific event func to char down event, can also add all event funcs to char down event.
         :param char: Char where event func, is triggered
@@ -60,7 +61,7 @@ class Keyboard(InputEvent):
         else:
             self.events[char + "_down"] = [func]
 
-    def del_key_down(self, char: str, func: Callable | str):
+    def del_key_down(self, char: str, func: Callable | str) -> None:
         """
         Removes specific event func from char down event, can also remove all event funcs from char down event.
         :param char: Char where event func, is triggered
@@ -76,7 +77,7 @@ class Keyboard(InputEvent):
         else:
             self.events[char + "_down"].remove(func)
 
-    def on_key_up(self, char: str, func: Callable):
+    def on_key_up(self, char: str, func: Callable) -> None:
         """
         Adds specific event func to char up event, can also add all event funcs to char up event.
         :param char: Char where event func, is triggered
@@ -92,7 +93,7 @@ class Keyboard(InputEvent):
         else:
             self.events[char + "_up"] = [func]
 
-    def del_key_up(self, char: str, func: Callable | str):
+    def del_key_up(self, char: str, func: Callable | str) -> None:
         """
         Removes specific event func from char up event, can also remove all event funcs from char up event.
         :param char: Char where event func, is triggered
@@ -108,7 +109,7 @@ class Keyboard(InputEvent):
         else:
             self.events[char + "_up"].remove(func)
 
-    def __on_key_down(self, e):
+    def __on_key_down(self, e: Event) -> None:
         char = e.char
 
         if not self.events.get(char + "_down"):
@@ -120,7 +121,7 @@ class Keyboard(InputEvent):
 
         self.keys_pressed[char] = True
 
-    def __on_key_up(self, e):
+    def __on_key_up(self, e: Event) -> None:
         char = e.char + "_up"
 
         if not self.events.get(char) or self.keys_pressed.get(char):
@@ -135,7 +136,7 @@ class Keyboard(InputEvent):
         for func in self.events.get(char):
             func(e)
 
-    def __key_press_event_loop(self):
+    def __key_press_event_loop(self) -> None:
         for pressed_key in self.keys_pressed.keys():
             if self.keys_pressed[pressed_key]:
                 for func in self.events.get(pressed_key + "_down"):
