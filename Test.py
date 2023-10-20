@@ -1,5 +1,5 @@
 from src.core import *
-from src.addons import *
+from src.std import *
 
 game_window = Window(display_fps=True)
 game_window.geometry("800x600")
