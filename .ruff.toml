@@ -1,4 +1,4 @@
-required-version = "0.1.0"
+required-version = "0.1.1"
 
 select = ["F", "E", "B", "Q"]
 tab-size = 4
