@@ -3,6 +3,8 @@ from time import time, sleep
 
 
 class Window(Tk):
+    ROOT = None
+
     def __init__(self, *args, **kwargs):
         self.__display_fps = kwargs.pop("display_fps")
         title = kwargs.pop("title", None)
@@ -21,6 +23,9 @@ class Window(Tk):
 
         self.__sleep_time = 0
         self.__fps = 0  # 0 = Infinity
+
+        if not Window.ROOT:
+            Window.ROOT = self
 
     def display_fps(self) -> None:  # I think this still capping yo
         current_time = time()
@@ -44,10 +49,10 @@ class Window(Tk):
 
     @property
     def fps(self) -> int | float:
-        return self.__fps
+        return self.__fps   # Fixme: fps are apparently halved
 
     @fps.setter
-    def fps(self, fps: int):
+    def fps(self, fps: int):   # Fixme: fps are apparently halved
         if not isinstance(fps, int):
             raise TypeError("'fps' needs to be of type 'int'")
 
@@ -79,6 +84,7 @@ class Window(Tk):
         if fps:
             self.__fps = fps
             self.__sleep_time = 1/fps
+            print(self.__sleep_time, 1/fps)
         try:
             while self.running:
                 self.update()
