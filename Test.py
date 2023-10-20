@@ -68,7 +68,6 @@ keyboard.on_key_down("w", move_up)
 keyboard.on_key_down("a", move_left)
 keyboard.on_key_down("s", move_down)
 keyboard.on_key_down("d", move_right)
-keyboard.on_key_down("ctrl", move_right)
 
 keyboard.register_key_combination("<Control-Key><Shift-Key><W><A>", lambda e: print("strg+w"))
 
