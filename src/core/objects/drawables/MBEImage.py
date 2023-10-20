@@ -1,4 +1,5 @@
 from tkinter import PhotoImage
+from typing import Any
 
 from src.core.constants import POSITION
 from src.core.display.Canvas import Canvas
@@ -8,14 +9,13 @@ from src.core.objects.drawables.Drawable import Drawable
 class MBEImage(Drawable, PhotoImage):
     __supported_file_types = ["jpg", "jpeg", "png", "gif"]
 
-    def __init__(self, file: str, *args, **kwargs):
-        if file.split(".")[-1] not in self.__supported_file_types:
-            raise TypeError(
-                f"'{file}' is of a not supported file type," 
-                f" for a list of supported types please look into the documentation!"
-            )
-        self.__file = file
-        super().__init__(file=self.__file, *args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        potential_file: str = '' if len(args) <= 0 else args[0]
+        if potential_file.split(".")[-1] in self.__supported_file_types:
+            self.__file = potential_file
+            args, kwargs["file"] = args[1:], potential_file
+
+        super().__init__(*args, **kwargs)
 
     def draw(self, master: Canvas, position: POSITION, object_id: str) -> None:
         master.create_image(position[0], position[1], image=self, tag=object_id)

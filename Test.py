@@ -47,7 +47,7 @@ keyboard.register_key_combination("<Control-Key><Shift-Key><W><A>", lambda e: pr
 
 Object(game_canvas, circle(), (400, 200))
 
-test_img = MBEImage(file="test.png")
+test_img = MBEImage("test.png")
 Object(game_canvas, test_img, (700, 200))
 
 game_window.mainloop()
