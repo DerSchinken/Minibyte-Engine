@@ -4,7 +4,7 @@ from src.core.input.Keyboard import Keyboard
 
 
 class Movement:
-    __keyboard = None
+    __keyboard: Keyboard = None
 
     def __init__(
             self, obj: Object, speed: int = 10, collision: bool = True,
@@ -35,7 +35,7 @@ class Movement:
 
         self.add_movement()
 
-    def add_movement(self):
+    def add_movement(self) -> None:
         for left_key in self.movement_keys["left"]:
             self.__keyboard.on_key_down(left_key, self.move_left)
         for right_key in self.movement_keys["right"]:
@@ -45,28 +45,38 @@ class Movement:
         for down_key in self.movement_keys["down"]:
             self.__keyboard.on_key_down(down_key, self.move_down)
 
-    def move_left(self):
+    def move_left(self) -> None:
         if ("left" not in self.__object.check_collision() or not self.collision) and self.movable:
             self.__object.position = (self.__object.position[0] - self.speed, self.__object.position[1])
             self.__object.update()
 
-    def move_right(self):
+    def move_right(self) -> None:
         if ("right" not in self.__object.check_collision() or not self.collision) and self.movable:
             self.__object.position = (self.__object.position[0] + self.speed, self.__object.position[1])
             self.__object.update()
 
-    def move_up(self):
+    def move_up(self) -> None:
         if ("up" not in self.__object.check_collision() or not self.collision) and self.movable:
             self.__object.position = (self.__object.position[0], self.__object.position[1] - self.speed)
             self.__object.update()
 
-    def move_down(self):
+    def move_down(self) -> None:
         if ("down" not in self.__object.check_collision() or not self.collision) and self.movable:
             self.__object.position = (self.__object.position[0], self.__object.position[1] + self.speed)
             self.__object.update()
 
-    def disable_movement(self):
-        pass  # TODO
+    def disable_movement(self) -> None:
+        self.movable = False
 
-    def remove_movement(self):
-        pass  # TODO
+    def enable_movement(self) -> None:
+        self.movable = True
+
+    def remove_movement(self) -> None:
+        for left_key in self.movement_keys["left"]:
+            self.__keyboard.del_key_down(left_key, self.move_left)
+        for right_key in self.movement_keys["right"]:
+            self.__keyboard.del_key_down(right_key, self.move_right)
+        for up_key in self.movement_keys["up"]:
+            self.__keyboard.del_key_down(up_key, self.move_up)
+        for down_key in self.movement_keys["down"]:
+            self.__keyboard.del_key_down(down_key, self.move_down)
