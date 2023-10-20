@@ -31,43 +31,13 @@ def follow_mouse(e):
 
 def on_click(e):
     keyboard_objects.append(Object(game_canvas, star(), (e.x, e.y), solid=False))
-
-
-def move_left():
-    for keyboard_object in keyboard_objects:
-        if "left" not in keyboard_object.check_collision([20, 0, 0, 0]):
-            keyboard_object.position = (keyboard_object.position[0] - 10, keyboard_object.position[1])
-            keyboard_object.update()
-
-
-def move_right():
-    for keyboard_object in keyboard_objects:
-        if "right" not in keyboard_object.check_collision([10, 0, 10, 10]):
-            keyboard_object.position = (keyboard_object.position[0] + 10, keyboard_object.position[1])
-            keyboard_object.update()
-
-
-def move_down():
-    for keyboard_object in keyboard_objects:
-        if "down" not in keyboard_object.check_collision([10, 10, 0, 10]):
-            keyboard_object.position = (keyboard_object.position[0], keyboard_object.position[1] + 10)
-            keyboard_object.update()
-
-
-def move_up():
-    for keyboard_object in keyboard_objects:
-        if "up" not in keyboard_object.check_collision([10, 10, 10, 0]):
-            keyboard_object.position = (keyboard_object.position[0], keyboard_object.position[1] - 10)
-            keyboard_object.update()
+    Movement(keyboard_objects[-1])
 
 
 mouse.on_move(follow_mouse)
 mouse.on_right_click(on_click)
 
-keyboard.on_key_down("w", move_up)
-keyboard.on_key_down("a", move_left)
-keyboard.on_key_down("s", move_down)
-keyboard.on_key_down("d", move_right)
+Movement(keyboard_objects[-1])
 
 keyboard.register_key_combination("<Control-Key><Shift-Key><W><A>", lambda e: print("strg+w"))
 

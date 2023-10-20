@@ -56,7 +56,7 @@ class Keyboard(InputEvent):
         if special_key:
             char = special_key
 
-        if self.events.get(char):
+        if self.events.get(char + "_down"):
             self.events[char + "_down"].append(func)
         else:
             self.events[char + "_down"] = [func]
@@ -88,7 +88,7 @@ class Keyboard(InputEvent):
         if special_key:
             char = special_key
 
-        if self.events.get(char):
+        if self.events.get(char + "_up"):
             self.events[char + "_up"].append(func)
         else:
             self.events[char + "_up"] = [func]
