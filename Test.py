@@ -9,7 +9,7 @@ game_window.disable_alt_f4()
 # ^ IMPORTANT: Please make sure to set the taskmanager to always stay on top before testing this!
 game_canvas = Canvas(game_window)
 
-game_canvas["bg"] = "red"
+game_canvas["bg"] = "#FF0000"
 
 mouse = Mouse(game_window)
 keyboard = Keyboard(game_window)
