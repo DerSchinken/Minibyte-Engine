@@ -1,1 +1,3 @@
-PyAudio==0.2.13
+ffmpeg-python
+pyaudio==0.2.13
+pydub==0.25.1
