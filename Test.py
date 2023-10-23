@@ -27,6 +27,8 @@ keyboard_shape.options["outline"] = "black"
 
 keyboard_objects = [Object(game_canvas, keyboard_shape, (0, 0))]
 
+hit_sound = Audio("hit_sound.wav")
+
 
 def follow_mouse(e):
     mouse_object.position = (e.x, e.y)
@@ -35,7 +37,7 @@ def follow_mouse(e):
 
 def on_click(e):
     keyboard_objects.append(Object(game_canvas, star(), (e.x, e.y), solid=False))
-    Movement(keyboard_objects[-1])
+    Movement(keyboard_objects[-1]).on_collision(hit_sound.play)
 
 
 mouse.on_move(follow_mouse)
