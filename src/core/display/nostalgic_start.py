@@ -6,11 +6,13 @@
 # Letzte Veränderung: 20.08.2019
 # Funktion:
 #    Erstellt die GUI welches das Startmenü des Spiels sein wird.
+# This code has historical value, i guess. Also I like easter eggs and this is kinda one
 # ---------------------------------------------------------------------------------------------------------------------
 
 from tkinter import *
 
 
+# noinspection PyPep8Naming,GrazieInspection,PyAttributeOutsideInit,SpellCheckingInspection
 class GUI:
     def __init__(self):
         # Ansprechpartner der ganzen GUI
@@ -121,11 +123,11 @@ class GUI:
                                       bg="#888")
 
         self.verlassenButton = Button(self.firstButtonFrame,
-                                text="Verlassen",
-                                command=self.close,
-                                width=19,
-                                height=2,
-                                bg="#888")
+                                      text="Verlassen",
+                                      command=self.close,
+                                      width=19,
+                                      height=2,
+                                      bg="#888")
 
     def packMainPage(self):
         """
@@ -139,7 +141,7 @@ class GUI:
         self.firstButtonFrame.pack(anchor=CENTER, padx=5, pady=10, ipadx=0)
         self.spielButton.grid(row=1, column=0, padx=5, pady=5)
         self.verlassenButton.grid(row=1, column=1, padx=5, pady=5)
-        self.anleitungButton.grid(row=2, columnspan=2, sticky=N+E+S+W, padx=5, pady=5)
+        self.anleitungButton.grid(row=2, columnspan=2, sticky=N + E + S + W, padx=5, pady=5)
 
     def packForgetMainPage(self):
         """
@@ -160,7 +162,7 @@ class GUI:
         self.packForgetMainPage()
 
         # Spielerauswahl == 2. Fenster
-        self.selectOpponent()
+        # self.selectOpponent()
 
     def close(self):
         """
@@ -203,8 +205,8 @@ class GUI:
 
         # Button, um zurück zum Menu zu kommen
         self.backToMenuButton = Button(self.fenster,
-                                 text="Zurück",
-                                 command=self.backFromInstruction)
+                                       text="Zurück",
+                                       command=self.backFromInstruction)
 
     # Buttons - Funktionen
     def packForgetInstruction(self):
@@ -262,7 +264,7 @@ class GUI:
                                  bg="#888",
                                  width=14,
                                  state="disabled",
-                                 command=None)
+                                 command=lambda: None)
 
         self.backFromSelectOpponentButton = Button(self.opponentSelectButtonFrame,
                                                    text="Zurück",
