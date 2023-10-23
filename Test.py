@@ -6,7 +6,8 @@ game_window.geometry("800x600")
 # game_window.fullscreen()
 game_window.disable_alt_f4()
 # game_window.always_on_top()
-# ^ IMPORTANT: Please make sure to set the taskmanager to always stay on top before testing this!
+# ^ IMPORTANT: Please make sure to set the taskmanager to always stay on top before testing this with fullscreen -
+# and no alt+f4!
 game_canvas = Canvas(game_window)
 
 game_canvas["bg"] = "#FF0000"
