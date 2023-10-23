@@ -1,5 +1,5 @@
-from tkinter import Tk, PhotoImage, Label
 from time import time, sleep
+from tkinter import Tk, PhotoImage, Label
 
 from src.core.display.nostalgic_start import GUI as NGUI
 
@@ -75,18 +75,19 @@ class Window(Tk):
         else:
             def pressed_alt_f4():
                 return "break"
+
             self.bind("<Alt-F4>", pressed_alt_f4())
 
     @property
     def fps(self) -> int | float:
-        return self.__fps   # Fixme: fps are apparently halved
+        return self.__fps  # Fixme: fps are apparently halved
 
     @fps.setter
-    def fps(self, fps: int):   # Fixme: fps are apparently halved
+    def fps(self, fps: int):  # Fixme: fps are apparently halved
         if not isinstance(fps, int):
             raise TypeError("'fps' needs to be of type 'int'")
 
-        self.__sleep_time = 1/fps
+        self.__sleep_time = 1 / fps
         self.__fps = fps
 
     def set_icon(self, icon_path: str) -> None:
@@ -113,7 +114,7 @@ class Window(Tk):
 
         if fps:
             self.__fps = fps
-            self.__sleep_time = 1/fps
+            self.__sleep_time = 1 / fps
         try:
             while self.running:
                 self.update()

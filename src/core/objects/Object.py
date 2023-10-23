@@ -43,7 +43,7 @@ class Object:
         if not self.check_off_screen():
             self.render_definition.update(self.parent, self.position, self._id)
 
-    def check_collision(self, threshold: THRESHOLD = None) -> list[str]:
+    def check_collision(self, direction: str = None, threshold: THRESHOLD = None) -> bool | list[str]:
         if threshold is None:  # [left, right, up, down]
             threshold = 0
         if not (isinstance(threshold, int) or isinstance(threshold, float)):
@@ -69,6 +69,8 @@ class Object:
                     if y1 < y3 and y3 - y1 > threshold[3]:
                         directions.append("down")
 
+        if direction:
+            return direction in directions
         return directions
 
     def get_bounding_box(self) -> tuple[int, int, int, int]:
@@ -80,8 +82,8 @@ class Object:
             x1, y1, x2, y2 = self.parent.bbox(self._id)
             width = x2 - x1
             height = y2 - y1
-            new_x1 = self.position[0] - width//2
-            new_y1 = self.position[1] - height//2
+            new_x1 = self.position[0] - width // 2
+            new_y1 = self.position[1] - height // 2
             new_x2 = new_x1 + width
             new_y2 = new_y1 + height
             return new_x1, new_y1, new_x2, new_y2

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 from src.core.constants import POSITION
 from src.core.display.containers.Canvas import Canvas
 

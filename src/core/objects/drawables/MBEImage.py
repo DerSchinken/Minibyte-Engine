@@ -13,6 +13,9 @@ class MBEImage(Drawable, PhotoImage):
         if potential_file.split(".")[-1] in self.__supported_file_types:
             self.__file = potential_file
             args, kwargs["file"] = args[1:], potential_file
+        else:
+            img_type = potential_file.split(".")[-1]
+            raise TypeError(f"Can't load image, {img_type} isn't supported! Only {self.__supported_file_types} are")
 
         super().__init__(*args, **kwargs)
 

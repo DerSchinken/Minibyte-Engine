@@ -1,7 +1,7 @@
+from threading import Thread
+
 from pydub import AudioSegment
 from pydub.playback import play
-
-from threading import Thread
 
 
 class Audio:

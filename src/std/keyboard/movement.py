@@ -1,8 +1,8 @@
 from typing import Callable
 
-from src.core.objects.Object import Object
 from src.core.display.Window import Window
 from src.core.input.Keyboard import Keyboard
+from src.core.objects.Object import Object
 
 
 class Movement:
