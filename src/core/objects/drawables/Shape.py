@@ -1,7 +1,7 @@
 from typing import Iterator
 
 from src.core.constants import VERTICES, VERTEX, POSITION
-from src.core.display.Canvas import Canvas
+from src.core.display.containers.Canvas import Canvas
 from src.core.objects.drawables.Drawable import Drawable
 
 

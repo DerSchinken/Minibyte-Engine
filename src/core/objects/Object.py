@@ -1,5 +1,5 @@
 from src.core.constants import POSITION, THRESHOLD
-from src.core.display.Canvas import Canvas
+from src.core.display.containers.Canvas import Canvas
 from src.core.objects.ObjectManager import ObjectManager
 from src.core.objects.drawables.Drawable import Drawable
 

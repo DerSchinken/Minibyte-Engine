@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from src.core.constants import POSITION
-from src.core.display.Canvas import Canvas
+from src.core.display.containers.Canvas import Canvas
 
 
 class Drawable(ABC):

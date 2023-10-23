@@ -1,7 +1,7 @@
 from typing import Callable
 from tkinter import Event
 
-from src.core.display.Canvas import Canvas
+from src.core.display.containers.Canvas import Canvas
 from src.core.display.Window import Window
 from src.core.input.InputEvent import InputEvent
 

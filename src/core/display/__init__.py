@@ -1,3 +1,2 @@
-from .Canvas import Canvas
+from .containers import *
 from .Window import Window
-from .Frame import Frame
