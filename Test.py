@@ -37,7 +37,7 @@ def follow_mouse(e):
 
 
 def on_click(e):
-    keyboard_objects.append(Object(game_canvas, star(), (e.x, e.y), solid=False))
+    keyboard_objects.append(Object(game_canvas, Text("Test Text yoo", "blue", background="black"), (e.x, e.y), solid=False))
     Movement(keyboard_objects[-1]).on_collision(hit_sound.play)
 
 
@@ -52,6 +52,6 @@ Object(game_canvas, circle(), (400, 200))
 
 test_img = MBEImage("test.png")
 Object(game_canvas, test_img, (700, 200))
-Object(game_canvas, Text("Test Text yoo"), (400, 400), solid=False)
+Object(game_canvas, Text("Test Text yoo", "blue", background="black"), (400, 400), solid=False)
 
 game_window.mainloop()
