@@ -16,35 +16,35 @@ class Text(Drawable):
 
         self.__background = background
 
-    def draw(self, master: Canvas, position: POSITION, object_id: str):
+    def draw(self, parent: Canvas, position: POSITION, object_id: str):
         # noinspection PyArgumentList
-        master.create_text(
+        parent.create_text(
             position[0], position[1],
             text=self.__str__(),
             tag=object_id,
             fill=self.__fill,
             font=self.__font,
         )
-        self.__draw_background(master, object_id)
+        self.__draw_background(parent, object_id)
 
-    def update(self, master: Canvas, position: POSITION, object_id: str):
-        master.delete(object_id)
+    def update(self, parent: Canvas, position: POSITION, object_id: str):
+        parent.delete(object_id)
         # noinspection PyArgumentList
-        master.create_text(
+        parent.create_text(
             position[0], position[1],
             text=self.__str__(),
             tag=object_id,
             fill=self.__fill,
             font=self.__font
         )
-        self.__draw_background(master, object_id)
+        self.__draw_background(parent, object_id)
 
-    def __draw_background(self, master: Canvas, object_id: str):
+    def __draw_background(self, parent: Canvas, object_id: str):
         if self.__background:
-            master.delete(object_id+"-bg")
+            parent.delete(object_id+"-bg")
             # noinspection PyArgumentList
-            master.create_rectangle(master.bbox(object_id), fill=self.__background, tag=object_id+"-bg")
-            master.tag_lower(object_id+"-bg", object_id)
+            parent.create_rectangle(parent.bbox(object_id), fill=self.__background, tag=object_id+"-bg")
+            parent.tag_lower(object_id+"-bg", object_id)
 
     def config(self, text: str = None, fill: str = None, font: FONT = None, background: str = None):
         if text:

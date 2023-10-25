@@ -19,9 +19,9 @@ class MBEImage(Drawable, PhotoImage):
 
         super().__init__(*args, **kwargs)
 
-    def draw(self, master: Canvas, position: POSITION, object_id: str) -> None:
-        master.create_image(position[0], position[1], image=self, tag=object_id)
+    def draw(self, parent: Canvas, position: POSITION, object_id: str) -> None:
+        parent.create_image(position[0], position[1], image=self, tag=object_id)
 
-    def update(self, master: Canvas, position: POSITION, object_id: str) -> None:
-        master.delete(object_id)
-        master.create_image(position[0], position[1], image=self, tag=object_id)
+    def update(self, parent: Canvas, position: POSITION, object_id: str) -> None:
+        parent.delete(object_id)
+        parent.create_image(position[0], position[1], image=self, tag=object_id)

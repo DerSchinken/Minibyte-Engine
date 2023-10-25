@@ -24,17 +24,17 @@ class Shape(Drawable):
         if self.size:
             self.update_size()
 
-    def draw(self, master: Canvas, position: POSITION, object_id: str) -> None:
+    def draw(self, parent: Canvas, position: POSITION, object_id: str) -> None:
         translated_shape = [(x + position[0], y + position[1]) for x, y in self]
         # noinspection PyArgumentList
-        master.create_polygon(translated_shape, tag=object_id, **self.options)
+        parent.create_polygon(translated_shape, tag=object_id, **self.options)
 
-    def update(self, master: Canvas, position: POSITION, object_id: str) -> None:
+    def update(self, parent: Canvas, position: POSITION, object_id: str) -> None:
         translated_shape = [(x + position[0], y + position[1]) for x, y in self]
 
-        master.delete(object_id)
+        parent.delete(object_id)
         # noinspection PyArgumentList
-        master.create_polygon(translated_shape, tag=object_id, **self.options)
+        parent.create_polygon(translated_shape, tag=object_id, **self.options)
 
     @staticmethod
     def check_vertices(vertices: VERTICES, exceptions: bool = False) -> bool:

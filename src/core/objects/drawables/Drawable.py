@@ -6,9 +6,9 @@ from src.core.display.containers.Canvas import Canvas
 
 class Drawable(ABC):
     @abstractmethod
-    def draw(self, master: Canvas, position: POSITION, object_id: str):
+    def draw(self, parent: Canvas, position: POSITION, object_id: str):
         pass
 
     @abstractmethod
-    def update(self, master: Canvas, position: POSITION, object_id: str):
+    def update(self, parent: Canvas, position: POSITION, object_id: str):
         pass
