@@ -14,10 +14,7 @@ class Audio:
 
     def play(self) -> int:
         if self.__thread is None or not self.__thread.is_alive():
-            self.__thread = Thread(
-                target=self.__play,
-                args=()
-            )
+            self.__thread = Thread(target=self.__play, args=())
             self.__thread.start()
             return 1
         else:
