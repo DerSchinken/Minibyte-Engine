@@ -1,3 +1,6 @@
+"""
+Because of Issue#21 I'll maybe try to use https://github.com/garydavenport73/PreferredSoundPlayer
+"""
 from threading import Thread
 
 from pydub import AudioSegment
@@ -8,12 +11,12 @@ class Audio:
     def __init__(self, file: str, blocking: bool = False):
         self.file_name = ".".join(file.split(".")[:-1])
         self.file_type = file.split(".")[-1]
-        self.audio = AudioSegment.from_file(file, file.split(".")[-1])
+        self.audio = AudioSegment.from_file(file, self.file_type)
         self.blocking = blocking
         self.__thread = None
 
     def play(self) -> int:
-        if self.__thread is None or not self.__thread.is_alive():
+        if (self.__thread is None or not self.__thread.is_alive()) and not self.blocking:
             self.__thread = Thread(target=self.__play, args=())
             self.__thread.start()
             return 1
