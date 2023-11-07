@@ -1,6 +1,3 @@
-"""
-Because of Issue#21 I'll maybe try to use https://github.com/garydavenport73/PreferredSoundPlayer
-"""
 from threading import Thread
 
 from pydub import AudioSegment
