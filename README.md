@@ -4,7 +4,7 @@ Be aware this project is more of a fun thing than an actual try at creating a us
 Game Engine
 
 ### Documentation
-Well, currently there is none, I'll write some in the future but for now the [Test.py](Test.py) has -    
+Well, currently there is none, I'll write some in the future but for now the [Test.py](Tests/Test.py) has -    
 to be the docs.
 
 Also, currently there is only the core of the Engine no editor for it, meaning you can -    

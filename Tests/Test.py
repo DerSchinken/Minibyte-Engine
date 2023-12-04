@@ -1,3 +1,9 @@
+if __name__ == "__main__":
+    from sys import path
+    from os import getcwd, chdir
+    path.append(getcwd())
+    chdir("Tests/")
+
 from src.core import *
 from src.std import *
 
@@ -40,7 +46,7 @@ def on_click(e):
     keyboard_objects.append(
         Object(game_canvas, Text("Test Text yoo", "blue", background="black"), (e.x, e.y), solid=False)
     )
-    Movement(keyboard_objects[-1]).on_collision(hit_sound.play)
+    Movement(keyboard_objects[-1], 1).on_collision(hit_sound.play)
 
 
 mouse.on_move(follow_mouse)
@@ -57,6 +63,6 @@ Object(game_canvas, test_img, (700, 200))
 keyboard_objects.append(
     Object(game_canvas, Text("Test Text yoo", "blue", background="black"), (400, 400), solid=False)
 )
-Movement(keyboard_objects[-1]).on_collision(hit_sound.play)
+Movement(keyboard_objects[-1], speed=1).on_collision(hit_sound.play)
 
 game_window.mainloop()
