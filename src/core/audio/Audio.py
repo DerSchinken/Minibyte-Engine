@@ -5,23 +5,27 @@ from pydub.playback import play
 
 
 class Audio:
-    def __init__(self, file: str, blocking: bool = False):
-        self.file_name = ".".join(file.split(".")[:-1])
-        self.file_type = file.split(".")[-1]
-        self.audio = AudioSegment.from_file(file, self.file_type)
-        self.blocking = blocking
+    def __init__(self, file: str):
+        self.file = file
+        self.file_name = ".".join(self.file.split(".")[:-1])
+        self.file_type = self.file.split(".")[-1]
+        self.audio = AudioSegment.from_file(self.file, self.file_type)
+
         self.__thread = None
 
-    def play(self) -> int:
-        if (self.__thread is None or not self.__thread.is_alive()) and not self.blocking:
+    def play(self, overlapping: bool = False, blocking: bool = False) -> None:
+        """
+        :param overlapping: Make sound overlap-able (multiple instances of the sound playing at the same time)
+        :param blocking: Make the sound playing halt execution of calls after this function until the sound has played
+        """
+        if (self.__thread is None or not self.__thread.is_alive()) and not overlapping:
             self.__thread = Thread(target=self.__play, args=())
             self.__thread.start()
-            return 1
-        else:
-            return -1
+            if blocking:
+                self.__thread.join()
 
     def __play(self) -> None:
         play(self.audio)
 
-    def convert(self, new_file_type: str):
+    def convert(self, new_file_type: str) -> None:
         self.audio.export(f"{self.file_name}.{new_file_type}", format=new_file_type)
