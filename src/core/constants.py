@@ -1,11 +1,9 @@
-from typing import Union
+POSITION = tuple[int, int] | list[int, int]
 
-POSITION = Union[tuple[int, int] | list[int, int]]
+VERTICES = tuple[tuple[int, int]] | tuple[list[int, int]] | list[tuple[int, int]] | list[list[int, int]]
 
-VERTICES = Union[tuple[tuple[int, int]] | tuple[list[int, int]] | list[tuple[int, int]] | list[list[int, int]]]
+VERTEX = tuple[int, int] | list[int, int]
 
-VERTEX = Union[tuple[int, int] | list[int, int]]
+THRESHOLD = int | float | list[int, int, int, int] | tuple[int, int, int, int]
 
-THRESHOLD = Union[int | float | list[int, int, int, int] | tuple[int, int, int, int]]
-
-FONT = Union[tuple[str, int] | list[str, int]]
+FONT = tuple[str, int] | list[str, int]
