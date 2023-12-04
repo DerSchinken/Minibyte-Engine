@@ -73,7 +73,7 @@ class Movement:
         if not self.collision:
             return False
 
-        collisions = self.object.check_collision()
+        collisions = self.object.check_collision_all()
         if collisions and self.__on_collision:
             for func in self.__on_collision:
                 try:

@@ -43,7 +43,7 @@ class Object:
         if not self.check_off_screen():
             self.render_definition.update(self.parent, self.position, self._id)
 
-    def check_collision(self, direction: str = None, threshold: THRESHOLD = None) -> bool | list[str]:
+    def check_collision_all(self, direction: str = None, threshold: THRESHOLD = None) -> bool | list[str]:
         if threshold is None:  # [left, right, up, down]
             threshold = 0
         if not (isinstance(threshold, int) or isinstance(threshold, float)):
@@ -57,6 +57,13 @@ class Object:
             if other_object is not self and other_object.solid:
                 x1, y1, x2, y2 = self.get_bounding_box()
                 x3, y3, x4, y4 = other_object.get_bounding_box()
+
+                # if x2 > x4:
+                #     left = clamp(x1,)
+                # print(left)
+                # right =
+                # up =
+                # down =
 
                 if x2 > x3 and x1 < x4 and y2 > y3 and y1 < y4:
                     # Objects are colliding
