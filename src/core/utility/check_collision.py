@@ -1,5 +1,5 @@
-from src.core.objects.Object import Object
 from src.core.constants import THRESHOLD
+from src.core.objects.Object import Object
 
 
 def check_collision(*objects: Object, threshold: THRESHOLD = None, same_parent: bool = True) -> bool:

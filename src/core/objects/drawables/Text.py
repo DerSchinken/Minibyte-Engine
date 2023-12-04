@@ -41,10 +41,10 @@ class Text(Drawable):
 
     def __draw_background(self, parent: Canvas, object_id: str):
         if self.__background:
-            parent.delete(object_id+"-bg")
+            parent.delete(object_id + "-bg")
             # noinspection PyArgumentList
-            parent.create_rectangle(parent.bbox(object_id), fill=self.__background, tag=object_id+"-bg")
-            parent.tag_lower(object_id+"-bg", object_id)
+            parent.create_rectangle(parent.bbox(object_id), fill=self.__background, tag=object_id + "-bg")
+            parent.tag_lower(object_id + "-bg", object_id)
 
     def config(self, text: str = None, fill: str = None, font: FONT = None, background: str = None):
         if text:
