@@ -77,7 +77,7 @@ class Movement:
         if collisions and self.__on_collision:
             for func in self.__on_collision:
                 try:
-                    func(self)
+                    func(movement_object=self)
                 except TypeError:
                     func()
 

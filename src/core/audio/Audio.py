@@ -18,7 +18,7 @@ class Audio:
         :param overlapping: Make sound overlap-able (multiple instances of the sound playing at the same time)
         :param blocking: Make the sound playing halt execution of calls after this function until the sound has played
         """
-        if (self.__thread is None or not self.__thread.is_alive()) and not overlapping:
+        if self.__thread is None or (self.__thread.is_alive() and overlapping) or not self.__thread.is_alive():
             self.__thread = Thread(target=self.__play, args=())
             self.__thread.start()
             if blocking:
